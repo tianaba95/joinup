@@ -1,0 +1,11 @@
+.app-card-square.mdl-card {
+    /*width: 320px;*/
+    width: 100%;
+    margin-right: 1rem;
+}
+
+.app-card-square > .mdl-card__title {
+    color: #fff;
+    background: url('../../../../../assets/images/dog.png') bottom right 15% no-repeat #46B6AC;
+    min-height: 200px;
+}

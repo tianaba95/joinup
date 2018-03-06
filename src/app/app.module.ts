@@ -1,0 +1,117 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { MdlModule } from '@angular-mdl/core';
+import { MdlSelectModule } from '@angular-mdl/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { MdlExpansionPanelModule } from '@angular-mdl/expansion-panel';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { app_routing } from './app.routes';
+
+import { PageTitleService } from './services/page-title.service';
+import { HttpModule } from '@angular/http';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/commons/header/header.component';
+import { AsideMenuComponent } from './components/commons/aside-menu/aside-menu.component';
+import { DemoComponent } from './components/demo/demo.component';
+import { PieComponent } from './components/commons/material-lite/pie/pie.component';
+import { GraphComponent } from './components/commons/material-lite/graph/graph.component';
+import { ChkboxCardComponent } from './components/commons/material-lite/chkbox-card/chkbox-card.component';
+import { SquareCardComponent } from './components/commons/material-lite/square-card/square-card.component';
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { RolComponent } from './components/rol/rol.component';
+import { SocialComponent } from './components/social/social.component';
+import { PlanAsistentesComponent } from './components/plan-asistentes/plan-asistentes.component';
+import { CalificacionPlanUsuarioComponent } from './components/calificacion-plan-usuario/calificacion-plan-usuario.component';
+import { TipoActividadSocialComponent } from './components/tipo-actividad-social/tipo-actividad-social.component';
+import { LugarPlanesComponent } from './components/lugar-planes/lugar-planes.component';
+import { SocialPendingComponent } from './components/social-pending/social-pending.component';
+import { ActividadRecurrenteComponent } from './components/actividad-recurrente/actividad-recurrente.component';
+import { ContactMessageComponent } from './components/contact-message/contact-message.component';
+import { IwanttoteachComponent } from './components/iwanttoteach/iwanttoteach.component';
+import { IwanttoteachFormComponent } from './components/iwanttoteach-form/iwanttoteach-form.component';
+import { ManageUsersService } from './services/manage-users.service';
+import { RolService } from './services/rol.service';
+import { SocialService } from './services/social.service';
+import { TipoActividadSocialService } from './services/tipo-actividad-social-service';
+import { LugarPlanesService } from './services/lugar-planes.service';
+import { ContactMessageService } from './services/contact-message.service';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { EmailComponent } from './components/authentication/email/email.component';
+import { SignupComponent } from './components/authentication/signup/signup.component';
+import { MembersComponent } from './components/authentication/members/members.component';
+
+import { AuthGuard } from './services/auth.service';
+
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyCW1ZSceJZ6DYFxHpYEaXcwofW7jQhI0WE",
+  authDomain: "joinuptest-495af.firebaseapp.com",
+  databaseURL: "https://joinuptest-495af.firebaseio.com",
+  storageBucket: "joinuptest-495af.appspot.com",
+  messagingSenderId: '930553757475'
+};
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    AsideMenuComponent,
+    DemoComponent,
+    PieComponent,
+    GraphComponent,
+    ChkboxCardComponent,
+    SquareCardComponent,
+    ManageUsersComponent,
+    RolComponent,
+    SocialComponent,
+    PlanAsistentesComponent,
+    CalificacionPlanUsuarioComponent,
+    TipoActividadSocialComponent,
+    LugarPlanesComponent,
+    SocialPendingComponent,
+    ActividadRecurrenteComponent,
+    ContactMessageComponent,
+    IwanttoteachComponent,
+    IwanttoteachFormComponent,
+    LoginComponent,
+    EmailComponent,
+    SignupComponent,
+    MembersComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    MdlModule,
+    MdlSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgDatepickerModule,
+    MdlExpansionPanelModule,
+    app_routing,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    BrowserAnimationsModule
+  ],
+  providers: [
+    PageTitleService,
+    ManageUsersService,
+    RolService,
+    SocialService,
+    TipoActividadSocialService,
+    LugarPlanesService,
+    ContactMessageService,
+    AuthGuard
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

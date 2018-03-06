@@ -1,0 +1,237 @@
+<div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+		<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+		  <mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
+			<mdl-tab-panel mdl-tab-panel-title="All">
+			  <ng-container *ngTemplateOutlet="table"></ng-container>
+			</mdl-tab-panel>
+	  
+			<mdl-tab-panel *ngFor="let cat of plan_category_tab" mdl-tab-panel-title="{{cat.name}}">
+			  <ng-container *ngTemplateOutlet="table;"></ng-container>
+			</mdl-tab-panel>
+		  </mdl-tabs>
+		</div>
+	  </div>
+
+<div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+	<div *ngFor="let item of my_list" class="mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop">
+		<mdl-card class="app-card-square" mdl-shadow="2">
+			<mdl-card-title mdl-card-expand [ngStyle]="{ 'background':'url(' + item.image +  ')  center center / cover no-repeat '}">
+				<h2 mdl-card-title-text>
+					{{item.title}}
+				</h2>
+			</mdl-card-title>
+
+			<mdl-card-supporting-text>
+				<div class="plan-info grid-100">
+					<div class="grid-100">
+						<p class="title">{{item.title}}</p>
+					</div>
+
+					<div class="grid-100">
+						<div class="grid-40">
+							<p>GUIDE: </p>
+						</div>
+						<div class="grid-60 text-right">
+							<p class="guide">{{item.guide}}</p>
+						</div>
+					</div>
+
+					<div class="grid-100">
+						<div class="grid-60">
+							<p class="rate">
+								<i *ngFor="let star of item?.rate?.stars" class="material-icons">{{star}}</i>
+							</p>
+						</div>
+						<div class="grid-20">
+							<p class="rate">({{item.rate?.average}})</p>
+						</div>
+						<div class="grid-20">
+							<p class="rate"><i class="material-icons">person</i>+{{item.rate?.numVotes}}</p>
+						</div>
+					</div>
+
+					<div class="grid-100">
+						<div class="grid-70">
+							<p>Administrative fee: </p>
+						</div>
+						<div class="grid-30 text-right">
+							<p class="fee">${{item.fee}}</p>
+						</div>
+					</div>
+
+					<div class="grid-100">
+						<div class="grid-70">
+							<p>Extra costs suggested: </p>
+						</div>
+						<div class="grid-30 text-right">
+							<p class="cost">${{item.cost}}</p>
+						</div>
+					</div>
+				</div>
+			</mdl-card-supporting-text>
+
+			<mdl-card-supporting-text class="card-border">
+				<div class="plan-info grid-100">
+					<div class="grid-100">
+						<div class="grid-40">
+							<p>Adress: </p>
+						</div>
+						<div class="grid-60 text-right">
+							<p class="adress">{{item.adress}}</p>
+						</div>
+					</div>
+
+					<div class="grid-100">
+						<div class="grid-100">
+							<p>Description: </p>
+						</div>
+						<div class="grid-100 text">
+							<p class="adress">{{item.descriptionShort}}</p>
+						</div>
+					</div>
+				</div>
+			</mdl-card-supporting-text>
+
+			<mdl-card-supporting-text class="card-border">
+				<div class="plan-info grid-100">
+					<div class="grid-100">
+						<div class="grid-100">
+							<p>TIME TO JOIN: </p>
+						</div>
+					</div>
+
+					<div class="grid-100">
+						<div class="grid-50">
+							<p><i class="material-icons">access_time</i>{{item.startingTime}} - {{item.endingTime}}</p>
+						</div>
+						<div class="grid-50 text-right">
+							<p class="adress">{{item.date}}</p>
+						</div>
+					</div>
+				</div>
+			</mdl-card-supporting-text>
+
+			<mdl-card-actions class="text-right" mdl-card-border>
+				<button class="primary-background primary-background-hover" mdl-button mdl-colored mdl-ripple (click)="viewObject(item)">
+					{{btnEdit}}
+				</button>
+			</mdl-card-actions >
+			
+		</mdl-card>
+	</div>
+</div>
+
+
+<!-- NEW/EDIT -->
+<div [hidden]="!show_form">
+	<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+		
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.title" placeholder="Title" autofocus></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.category" placeholder="Category"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.location" placeholder="Location"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.adress" placeholder="Adress"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.descriptionShort" placeholder="Description Short"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.descriptionLong" placeholder="Description Long"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.maxAsisstant" placeholder="Max Assistants"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.cost" placeholder="Cost"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.fee" placeholder="Fee"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<label for="date">Date</label>
+			<ng-datepicker id="date" name="date" [(ngModel)]="object.date"></ng-datepicker>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.startingTime" placeholder="Starting Time"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<mdl-textfield type="text" [(ngModel)]="object.endingTime" placeholder="Ending Time"></mdl-textfield>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<div class="select-container">
+				<select [(ngModel)]="object.guide">
+					  <option value="" disabled>Select Guide</option>
+					  <option *ngFor="let g of my_guides" value = "{{g.name}} {{g.lastName}}">{{g.name}} {{g.lastName}}</option>
+				  </select>
+				<label class="control-label">Guide</label><i class="bar"></i>
+			</div>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<div class="file_input_div">
+				<div class="file_input">
+					<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+					  <i class="material-icons">file_upload</i>
+					  <input id="file_input_file" class="none" type="file" (change)="detectFiles($event)"/>
+					</label>
+				</div>
+				<div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+					<input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" placeholder="Photo"
+					 [ngModel]="selectedFiles" />
+					<label class="mdl-textfield__label" for="file_input_text"></label>
+				</div>
+			</div>
+		</div>
+
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+			<button mdl-button mdl-ripple *ngIf="editing" (click)="deleteConfirmation(object,object.name + ' ' + object.lastName)">
+			  {{btnDelete}}
+			</button>
+
+			<button mdl-button mdl-ripple (click)="cancel()">
+			  {{btnCancel}}
+			</button>
+
+			<button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="createObject()">
+			  {{btnSaveObject}}
+			</button>
+		</div>
+
+	</div>
+</div>
+
+
+<button [hidden]="show_form" id="add-fixed_btn" mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple (click)="addObject()">
+	<mdl-icon>add</mdl-icon>
+</button>
+
+
+<div *ngIf="currentUpload && currentUpload.progress < 100" class="bottom-notification">
+		
+	<div class="card-panel teal">
+	<div class="progress">
+		<div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+	</div>
+	<span class="color-white">
+			Uploading Photo: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+		</span>
+	</div>
+</div>

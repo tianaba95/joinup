@@ -1,0 +1,20 @@
+<router-outlet *ngIf="!isAuth"></router-outlet>
+
+
+
+  <mdl-layout *ngIf="isAuth" mdl-layout-fixed-header mdl-layout-fixed-drawer>
+  <mdl-layout-header class="mdl-color--grey-100 mdl-color-text--grey-600">
+    <app-header></app-header>
+  </mdl-layout-header>
+
+  <mdl-layout-drawer>
+    <app-aside-menu></app-aside-menu>
+  </mdl-layout-drawer>
+
+  <mdl-layout-content class="mdl-color--grey-100">
+    <div class="app-content mdl-grid">
+      <router-outlet></router-outlet>
+      <dialog-outlet></dialog-outlet>
+    </div>
+  </mdl-layout-content>
+</mdl-layout>

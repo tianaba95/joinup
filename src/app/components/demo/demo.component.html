@@ -1,0 +1,240 @@
+<div class="app-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="app-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+    <app-pie percentage="82"></app-pie>
+  </div>
+
+  <div class="app-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+    <app-pie percentage="83"></app-pie>
+  </div>
+
+  <div class="app-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+    <app-pie percentage="84"></app-pie>
+  </div>
+
+  <div class="app-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+    <app-pie percentage="85"></app-pie>
+  </div>
+</div>
+
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="app-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+    <app-graph></app-graph>
+  </div>
+</div>
+
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop">
+    <app-square-card cardTitle="My Card" cardText="Simple square card sample" cardLinkText="Read More" cardLink="home">
+    </app-square-card>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop">
+    <app-square-card cardTitle="Update" cardText="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Aenan convallis." cardLinkText="View Updates" cardLink="home">
+    </app-square-card>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop">
+    <app-square-card cardTitle="Update" cardText="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Aenan convallis." cardLinkText="View Updates" cardLink="home">
+    </app-square-card>
+  </div>
+</div>
+
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop">
+    <app-square-card cardTitle="My Card" cardText="Simple square card sample" cardLinkText="Read More" cardLink="home">
+    </app-square-card>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop">
+    <app-square-card cardTitle="Update" cardText="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Aenan convallis." cardLinkText="View Updates" cardLink="home">
+    </app-square-card>
+  </div>
+</div>
+
+
+<div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--8-col-desktop">
+  <app-chkbox-card></app-chkbox-card>
+</div>
+
+
+<!--MESSAGE SAMPLES. SHOULD MAKE A COMPONENT WITH A CARD-->
+<ng-template #message1 let-item>
+  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop">
+      <img src="./assets/images/user.jpg" />
+    </div>
+
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-desktop">
+      <h5>{{item?.title}}</h5>
+      <p>{{item?.text}}</p>
+    </div>
+
+    <div class="card-border">
+      <button mdl-button mdl-colored mdl-ripple [routerLink]="home">
+        Read More
+      </button>
+
+      <mdl-icon class="float-right">check_circle</mdl-icon>
+      <mdl-icon class="float-right">delete</mdl-icon>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #message2>
+  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop">
+      <img src="./assets/images/user.jpg" />
+    </div>
+
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-desktop">
+      <h5>tit1</h5>
+      <p>Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit
+        exercitation nostrud quis proident minim.</p>
+    </div>
+
+    <div class="card-border"></div>
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop">
+      <img src="./assets/images/user.jpg" />
+    </div>
+
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-desktop">
+      <h5>tit1</h5>
+      <p>Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit
+        exercitation nostrud quis proident minim.</p>
+    </div>
+
+    <div class="card-border"></div>
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop">
+      <img src="./assets/images/user.jpg" />
+    </div>
+
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-desktop">
+      <h5>tit1</h5>
+      <p>Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit
+        exercitation nostrud quis proident minim.</p>
+    </div>
+  </div>
+</ng-template>
+
+
+<mdl-tabs mdl-ripple mdl-tab-active-index="0">
+  <mdl-tab-panel mdl-tab-panel-title="Message Type 1">
+    <ng-container *ngTemplateOutlet="message1; context: {$implicit: {title:'Prueba 1', text:'Un texto de prueba'}}"></ng-container>
+    <ng-container *ngTemplateOutlet="message1; context: {$implicit: {title:'Prueba 2', text:'Segundo texto de prueba'}}"></ng-container>
+    <ng-container *ngTemplateOutlet="message1; context: {$implicit: {title:'Prueba 3', text:'Tercer texto de prueba'}}"></ng-container>
+  </mdl-tab-panel>
+
+  <mdl-tab-panel mdl-tab-panel-title="Message Type 2">
+    <ng-container *ngTemplateOutlet="message2"></ng-container>
+  </mdl-tab-panel>
+</mdl-tabs>
+
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+    <mdl-textfield type="text" [(ngModel)]="nombre" placeholder="Ingresa nombre">
+    </mdl-textfield>
+  </div>
+
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+    <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="searchByCity()">
+        Buscar
+      </button>
+  </div>
+
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+    <button class="app-full-width" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="startProcces()">
+        Calcular Ascendente
+      </button>
+  </div>
+</div>
+
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop">
+    <mdl-list>
+      <mdl-list-item (click)="changeKidGenre('0')">
+        <mdl-list-item-primary-content>
+          <img class="checkbox_icon" src="./assets/images/girl.png" /> Niña
+        </mdl-list-item-primary-content>
+        <mdl-list-item-secondary-action>
+          <mdl-radio [(ngModel)]='kidGenre' value="0" mdl-ripple></mdl-radio>
+        </mdl-list-item-secondary-action>
+      </mdl-list-item>
+
+      <mdl-list-item (click)="changeKidGenre('1')">
+        <mdl-list-item-primary-content>
+          <img class="checkbox_icon" src="./assets/images/boy.png" /> Niño
+        </mdl-list-item-primary-content>
+        <mdl-list-item-secondary-action>
+          <mdl-radio [(ngModel)]='kidGenre' value="1" mdl-ripple></mdl-radio>
+        </mdl-list-item-secondary-action>
+      </mdl-list-item>
+    </mdl-list>
+  </div>
+</div>
+
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop">
+    <div class="select-container">
+      <select (change)="changeKidSign($event)">
+          <option value="0" disabled>Seleccione</option>
+          <option *ngFor="let signo of signos" [value]="signo.id">{{signo.name}}</option>
+      </select>
+      <label class="control-label">Signo Niñ@</label><i class="bar"></i>
+    </div>
+  </div>
+</div>
+
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+        <table>
+            <thead>
+              <tr>
+                <th scope="col">Account</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Period</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row"  data-label="Account">Visa - 3412</td>
+                <td data-label="Due Date">04/01/2016</td>
+                <td data-label="Amount">$1,190</td>
+                <td data-label="Period">03/01/2016 - 03/31/2016</td>
+              </tr>
+              <tr>
+                <td scope="row" data-label="Account">Visa - 6076</td>
+                <td data-label="Due Date">03/01/2016</td>
+                <td data-label="Amount">$2,443</td>
+                <td data-label="Period">02/01/2016 - 02/29/2016</td>
+              </tr>
+              <tr>
+                <td scope="row" data-label="Account">Corporate AMEX</td>
+                <td data-label="Due Date">03/01/2016</td>
+                <td data-label="Amount">$1,181</td>
+                <td data-label="Period">02/01/2016 - 02/29/2016</td>
+              </tr>
+              <tr>
+                <td scope="row" data-label="Acount">Visa - 3412</td>
+                <td data-label="Due Date">02/01/2016</td>
+                <td data-label="Amount">$842</td>
+                <td data-label="Period">01/01/2016 - 01/31/2016</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<button id="add-fixed_btn" mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple>
+  <mdl-icon>add</mdl-icon>
+</button>

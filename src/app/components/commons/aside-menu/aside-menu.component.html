@@ -1,0 +1,19 @@
+<header class="app-drawer-header primary-background">
+  <img src="{{username_img}}" class="app-avatar">
+  <span class="color-white">{{username}}</span>
+</header>
+  
+<nav class="app-navigation mdl-navigation" >
+  <a *ngFor="let item of menu_list"  id="dropdown-{{item.id}}" class="mdl-navigation__link dropdown" (click)=dropdownMenu(item.id) routerLinkActive="active">
+    
+    <span *ngIf="!item.link"><i class="material-icons" role="presentation">{{item.icon}}</i>{{item.text}}</span>
+    
+    <a *ngIf="!item.link" class="dropdown-content isHide">
+      <a *ngFor="let subItem of item.children" [routerLink]="[subItem.link]"  (click)="closeMenu()">
+        {{subItem.text}}
+      </a>
+    </a>
+
+    <span *ngIf="item.link"  [routerLink]="[item.link]"  (click)="closeMenu()"><i class="material-icons" role="presentation">{{item.icon}}</i>{{item.text}}</span>
+  </a>
+</nav>

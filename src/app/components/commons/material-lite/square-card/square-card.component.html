@@ -1,0 +1,15 @@
+<mdl-card class="app-card-square" mdl-shadow="2">
+  <mdl-card-title mdl-card-expand >
+    <h2 mdl-card-title-text>{{cardTitle}}</h2>
+  </mdl-card-title>
+
+  <mdl-card-supporting-text>
+    {{cardText}}
+  </mdl-card-supporting-text>
+
+  <mdl-card-actions mdl-card-border>
+    <button mdl-button mdl-colored mdl-ripple [routerLink]="[cardLink]">
+      {{cardLinkText}}
+    </button>
+  </mdl-card-actions>
+</mdl-card>

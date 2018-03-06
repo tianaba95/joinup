@@ -1,0 +1,69 @@
+.app-drawer-header {
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 16px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-property: max-height,box-shadow;
+}
+
+.app-drawer-header .app-avatar {
+    margin: auto;
+    width: 150px;
+    border-radius: 90px;
+}
+
+.app-drawer-header span{
+    text-align: center;
+}
+
+a.mdl-navigation__link.active {
+    background-color: #e0e0e0;
+}
+
+.isHide{
+    display: none;
+}
+
+.display-block{
+    display: block !important;
+}
+
+.background-none{
+    background-color: inherit !important;
+}
+
+.background-none:hover{
+    background-color: inherit !important;
+}
+
+.dropdown span{
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content{
+    /*display: block;*/
+    overflow: hidden;
+    width: 100%;
+}
+
+.dropdown-content a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #757575;
+}
+
+.dropdown-content a:hover{
+    background: #e0e0e0;
+}

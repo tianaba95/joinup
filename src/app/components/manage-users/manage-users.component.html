@@ -1,0 +1,144 @@
+<div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+    <mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
+      <mdl-tab-panel mdl-tab-panel-title="All">
+        <ng-container *ngTemplateOutlet="table"></ng-container>
+      </mdl-tab-panel>
+
+      <mdl-tab-panel *ngFor="let role of my_roles" mdl-tab-panel-title="{{role.name}}">
+        <ng-container *ngTemplateOutlet="table;"></ng-container>
+      </mdl-tab-panel>
+    </mdl-tabs>
+  </div>
+</div>
+
+
+
+<!--TABLE. SHOULD MAKE A COMPONENT -->
+<ng-template #table>
+  <table>
+      <thead>
+        <tr>
+          <th scope="col">Photo</th>
+          <th scope="col">Name</th>
+          <th scope="col">Username</th>
+          <th scope="col" class="hide-sm-2">Email</th>
+          <th scope="col" class="hide-sm-1">City</th>
+          <th scope="col">Rol</th>
+          <th scope="col" style="width:150px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of my_list"  [ngClass]="{'table-row-active': rowElementActive === o.id }">
+
+          <td scope="row" [ngClass]="{'table-display-none' : !o.photo}">
+            <div class="table-avatar">
+              <img src="{{o.photo}}" alt="" />
+            </div>
+          </td>
+          
+          <td data-label="Name" [ngClass]="{'table-display-none' : !o.lastName  && !o.name}">{{o.name}} {{o.lastName}}</td>
+          <td data-label="Username" [ngClass]="{'table-display-none' : !o.username}">{{o.username}}</td>
+          <td data-label="Email" class="hide-sm-2" [ngClass]="{'table-display-none' : !o.email}">{{o.email}}</td>
+          <td data-label="City" class="hide-sm-1" [ngClass]="{'table-display-none' : !o.city}">{{o.city}}</td>
+          <td data-label="Rol" [ngClass]="{'table-display-none' : !o.rol}">{{o.rol}}</td>
+          <td>
+            <a (click)="viewObject(o)" class="button"><i class="material-icons">mode_edit</i></a>
+            <a (click)="deleteConfirmation(o)" class="button"><i class="material-icons">delete</i></a>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+</ng-template>
+
+<button [hidden]="show_form" id="add-fixed_btn" mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple (click)="addObject()">
+  <mdl-icon>add</mdl-icon>
+</button>
+
+
+
+
+
+<!-- NEW/EDIT -->
+<div [hidden]="!show_form">
+  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <mdl-textfield type="text" [(ngModel)]="object.name" placeholder="Name" autofocus></mdl-textfield>
+    </div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <mdl-textfield type="text" [(ngModel)]="object.lastName" placeholder="Lastname"></mdl-textfield>
+    </div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <mdl-textfield type="text" [(ngModel)]="object.email" placeholder="Email"></mdl-textfield>
+    </div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <mdl-textfield type="text" [(ngModel)]="object.username" placeholder="Username"></mdl-textfield>
+    </div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <mdl-textfield type="text" [(ngModel)]="object.password" placeholder="Password"></mdl-textfield>
+    </div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <mdl-textfield type="text" [(ngModel)]="object.city" placeholder="City"></mdl-textfield>
+    </div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <div class="select-container">
+        <select [(ngModel)]="object.rol">
+                <option value="" disabled>Select Rol</option>
+                <option *ngFor="let r of my_roles" value = "{{r.name}}">{{r.name}}</option>
+            </select>
+        <label class="control-label">Rol</label><i class="bar"></i>
+      </div>
+    </div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <div class="file_input_div">
+        <div class="file_input">
+          <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+                <i class="material-icons">file_upload</i>
+                <input id="file_input_file" class="none" type="file" (change)="detectFiles($event)"/>
+              </label>
+        </div>
+        <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
+          <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" placeholder="Photo"
+            [ngModel]="selectedFiles" />
+          <label class="mdl-textfield__label" for="file_input_text"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <button mdl-button mdl-ripple *ngIf="editing" (click)="deleteConfirmation(object,object.name + ' ' + object.lastName)" >
+        {{btnDelete}}
+      </button>
+
+      <button mdl-button mdl-ripple (click)="cancel()">
+        {{btnCancel}}
+      </button>
+
+      <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="createObject()">
+        {{btnSaveObject}}
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<div *ngIf="currentUpload && currentUpload.progress < 100" class="bottom-notification">
+
+  <div class="card-panel teal">
+    <div class="progress">
+      <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+    </div>
+    <span class="color-white">
+          Uploading Photo: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+        </span>
+  </div>
+</div>

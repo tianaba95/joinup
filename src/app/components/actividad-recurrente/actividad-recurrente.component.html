@@ -1,0 +1,44 @@
+<div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+    <mdl-tabs mdl-ripple mdl-tab-active-index="0" (mdl-tab-active-changed)="tabChanged($event)">
+      <mdl-tab-panel mdl-tab-panel-title="All">
+        <ng-container *ngTemplateOutlet="table"></ng-container>
+      </mdl-tab-panel>
+
+      <mdl-tab-panel *ngFor="let cat of plan_category_tab" mdl-tab-panel-title="{{cat.name}}">
+        <ng-container *ngTemplateOutlet="table;"></ng-container>
+      </mdl-tab-panel>
+    </mdl-tabs>
+  </div>
+</div>
+
+<!--TABLE. SHOULD MAKE A COMPONENT -->
+<ng-template #table>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Category</th>
+        <th scope="col">Location</th>
+        <th scope="col">Date</th>
+        <th scope="col">Num Votes</th>
+        <th scope="col">Average</th>
+        <th scope="col" style="width:150px;">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let o of my_list" >
+        <td scope="row" data-label="Title">{{o.title}}</td>
+        <td scope="row" data-label="Category">{{o.category}}</td>
+        <td scope="row" data-label="Location">{{o.location}}</td>
+        <td scope="row" data-label="Date">{{o.date}}</td>
+        <td scope="row" data-label="Num Votes">{{o?.rate?.numVotes}}</td>
+        <td scope="row" data-label="Average">{{o?.rate?.average}}</td>
+        <td>
+          <mdl-switch [(ngModel)]="o.recurrent" (ngModelChange)="setRecurrent(o,$event)" mdl-ripple></mdl-switch>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

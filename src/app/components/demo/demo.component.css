@@ -1,0 +1,37 @@
+:host{
+    width: 100%;
+}
+
+/* MESSAGE CARDS*/
+.float-right{
+    float: right;
+}
+
+.card-border{
+    border-top: 1px solid rgba(0,0,0,.1);
+    width: 100%;
+    padding: 8px;
+}
+/*END MESSAGE CARDS*/
+
+
+/* CHECKBOX ITEM*/
+mdl-radio,
+mdl-checkbox,
+mdl-switch {
+    display: inline;
+}
+
+.checkbox_icon {
+    margin-right: 16px;
+    width: 40px;
+}
+
+.mdl-list {
+    position: initial;
+}
+
+mdl-list-item.mdl-list__item {
+    cursor: pointer;
+}
+/* END CHECKBOX ITEM*/

@@ -1,0 +1,60 @@
+<div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+    <ng-container *ngTemplateOutlet="table"></ng-container>
+  </div>
+</div>
+
+
+
+<!--TABLE. SHOULD MAKE A COMPONENT -->
+<ng-template #table>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Role Name</th>
+        <th scope="col" style="width:150px;">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let o of my_list" [ngClass]="{'table-row-active': rowElementActive === o.id }">
+        <td scope="row" data-label="Role Name">{{o.name}}</td>
+
+        <td>
+          <a (click)="viewObject(o)" class="button"><i class="material-icons">mode_edit</i></a>
+          <a (click)="deleteConfirmation(o)" class="button"><i class="material-icons">delete</i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<!-- ADD BUTTON -->
+<button [hidden]="show_form" id="add-fixed_btn" mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple (click)="addObject()">
+  <mdl-icon>add</mdl-icon>
+</button>
+
+
+
+<!-- NEW/EDIT -->
+<div [hidden]="!show_form">
+  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+      <mdl-textfield type="text" [(ngModel)]="object.name" placeholder="Name" autofocus></mdl-textfield>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <button mdl-button mdl-ripple *ngIf="editing" (click)="deleteConfirmation(object,object.name)">
+          {{btnDelete}}
+        </button>
+
+      <button mdl-button mdl-ripple (click)="cancel()">
+          {{btnCancel}}
+        </button>
+
+      <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="createObject()">
+          {{btnSaveObject}}
+        </button>
+    </div>
+  </div>
+</div>

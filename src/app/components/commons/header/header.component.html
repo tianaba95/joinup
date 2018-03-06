@@ -1,0 +1,23 @@
+<mdl-layout-header-row>
+
+  <mdl-layout-title>{{pageTitle}}</mdl-layout-title>
+
+  <mdl-layout-spacer></mdl-layout-spacer>
+
+  <mdl-textfield type="text" icon="search"></mdl-textfield>
+
+  <button mdl-button="mdl-button" #navbarmenubtn="mdlButton" (click)="navbarmenu.toggle($event, navbarmenubtn)" mdl-button-type="icon" mdl-ripple="mdl-ripple">
+    <mdl-icon>more_vert</mdl-icon>
+  </button>
+
+  <mdl-menu #navbarmenu="mdlMenu" mdl-menu-position="bottom-right"> 
+    <mdl-menu-item (click)="logout()" mdl-ripple="mdl-ripple">Sign out</mdl-menu-item>
+    <mdl-menu-item mdl-ripple="mdl-ripple">Contact</mdl-menu-item>
+    <mdl-menu-item mdl-ripple="mdl-ripple">Legal information</mdl-menu-item>
+  </mdl-menu>
+</mdl-layout-header-row>
+
+
+    
+    
+
