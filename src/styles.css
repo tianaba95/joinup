@@ -406,6 +406,14 @@ input.txt {
     border: 1px solid #BBBBBB;
 }
 
+select.txt {
+    background:#fff !important;
+    padding: 1.3em 1em;
+    width: 92%;
+    font-size:1.3em;
+    border: 1px solid #BBBBBB;
+}
+
 h2 {
     margin: 1.7em 0 .9em 0;
 }
