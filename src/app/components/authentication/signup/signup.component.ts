@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
         (success) => {
           console.log(success);
           console.log(success.uid);
-          let object = { id: Date.now(), name: formData.value.email, lastName: formData.value.email, email: formData.value.email, username: formData.value.email, password: null, photo: null, city: null, rol: 'User', uid: success.uid};
+          let object = { id: Date.now(), name: formData.value.name, lastName: formData.value.lastname, email: formData.value.email, username: formData.value.email, password: null, photo: null, city: null, rol: 'User', uid: success.uid};
           this.manageUsersService.merge(object, null);
           this.router.navigate(['/login'])
         }).catch(

@@ -409,7 +409,7 @@ input.txt {
 select.txt {
     background:#fff !important;
     padding: 1.3em 1em;
-    width: 92%;
+    width: 100%;
     font-size:1.3em;
     border: 1px solid #BBBBBB;
 }
