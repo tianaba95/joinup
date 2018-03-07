@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
     .then(function(result) {
       var displayName = result.user.displayName.split(" ");
       var email = result.user.email;
-      var uid = result.user.uid;
 
       var isit = 0;
       for (let object of thisTemp.my_list) {
@@ -65,7 +64,7 @@ export class LoginComponent implements OnInit {
       }
       // ...
       if(isit == 0){
-        let object = { id: Date.now(), name: displayName[0], lastName: displayName[1], email: email, username: null, password: null, photo: null, city: null, rol: 'User', uid: uid};
+        let object = { id: Date.now(), name: displayName[0], lastName: displayName[1], email: email, username: null, password: null, photo: result.user.photoURL, city: null, rol: 'User', uid: result.user.uid};
         thisTemp.manageUsersService.merge(object, null);
       }
     }).catch(function(error) {

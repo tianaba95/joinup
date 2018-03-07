@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdlLayoutComponent } from '@angular-mdl/core';
+import {AngularFireAuth  } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 declare var $:any;
 
@@ -10,8 +12,8 @@ declare var $:any;
 })
 export class AsideMenuComponent implements OnInit {
 
-  username = "usuario@prueba.com";
-  username_img = "./assets/images/user.png";
+  username = "";
+  username_img = "";
 
   displaySubmenu = null;
 
@@ -49,7 +51,13 @@ export class AsideMenuComponent implements OnInit {
     //{id:13,text:'Demo', link: 'demo', icon: 'report'},
   ];
 
-  constructor(private mdlLayoutComponent:MdlLayoutComponent) { }
+  constructor(private mdlLayoutComponent:MdlLayoutComponent, public afAuth: AngularFireAuth) {
+      var user = this.afAuth.auth.currentUser;
+      if (user){
+        this.username = user.displayName;
+        this.username_img = user.photoURL;
+      }
+   }
 
   ngOnInit() {
   }
