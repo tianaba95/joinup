@@ -55,7 +55,8 @@ export class AsideMenuComponent implements OnInit {
       var user = this.afAuth.auth.currentUser;
       if (user){
         this.username = user.displayName;
-        this.username_img = user.photoURL;
+        if(user.photoURL){
+          this.username_img = user.photoURL;}
       }
    }
 
