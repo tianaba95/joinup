@@ -18,6 +18,7 @@ import { ManageUsersService } from '../../../services/manage-users.service';
 export class LoginComponent implements OnInit {
 
   error: any;
+  my_list: any[];
 
   constructor(public afAuth: AngularFireAuth,private router: Router, private manageUsersService: ManageUsersService) {
     this.afAuth.authState.subscribe((auth) => {
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/users');
       }
     });
-
+    this.initObjectSuscribe();
   }
 
   private modelPath:string = 'users';
@@ -33,21 +34,40 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   
-  
+  getObjectList() {
+    return this.manageUsersService.getAll();
+  }
+
+  initObjectSuscribe() {
+    this.getObjectList()
+      .subscribe(
+      objects => {
+        this.my_list = objects;
+      }
+      );
+  }
+
   loginFb() {
     console.log("LOG WITH FB");
-    var provider = new firebase.auth.FacebookAuthProvider();
     var thisTemp = this;
-    this.afAuth.auth.signInWithPopup(provider)
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
     .then(function(result) {
       var displayName = result.user.displayName.split(" ");
       var email = result.user.email;
       var uid = result.user.uid;
-      // ...
-      console.log(thisTemp.manageUsersService.getAll())
 
-      let object = { id: Date.now(), name: displayName[0], lastName: displayName[1], email: email, username: null, password: null, photo: null, city: null, rol: 'User', uid: uid};
-      thisTemp.manageUsersService.merge(object, null);
+      var isit = 0;
+      for (let object of thisTemp.my_list) {
+        if(object.email == email){
+          isit = 1;
+          break;
+        }
+      }
+      // ...
+      if(isit == 0){
+        let object = { id: Date.now(), name: displayName[0], lastName: displayName[1], email: email, username: null, password: null, photo: null, city: null, rol: 'User', uid: uid};
+        thisTemp.manageUsersService.merge(object, null);
+      }
     }).catch(function(error) {
       console.log(error)
     });
@@ -63,18 +83,6 @@ export class LoginComponent implements OnInit {
       this.error = err;
     });
 
-    /*
-    this.afAuth.auth.login({
-      provider: AuthProviders.Google,
-      method: AuthMethods.Popup,
-    }).then(
-        (success) => {
-        this.router.navigate(['/members']);
-      }).catch(
-        (err) => {
-        this.error = err;
-      })
-      */
 }
 
 }
