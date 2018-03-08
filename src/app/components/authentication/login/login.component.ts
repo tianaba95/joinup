@@ -5,7 +5,6 @@ import { moveIn } from '../../../router.animations';
 
 
 import * as firebase from 'firebase/app';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { Observable } from 'rxjs/Observable';
 import { ManageUsersService } from '../../../services/manage-users.service';
 
@@ -20,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   error: any;
 
-  constructor(public afAuth: AngularFireAuth,private router: Router, private manageUsersService: ManageUsersService, public afDB:AngularFireDatabase) {
+  constructor(public afAuth: AngularFireAuth,private router: Router, private manageUsersService: ManageUsersService) {
     this.afAuth.authState.subscribe((auth) => {
       if(auth) {
         this.router.navigateByUrl('/users');
@@ -37,18 +36,17 @@ export class LoginComponent implements OnInit {
   
   loginFb() {
     console.log("LOG WITH FB");
-    var displayName:string = "";
-    var email:string = "";
-    var uid:string = "";
     var provider = new firebase.auth.FacebookAuthProvider();
     var thisTemp = this;
     this.afAuth.auth.signInWithPopup(provider)
     .then(function(result) {
-      displayName = result.user.displayName;
-      email = result.user.email;
-      uid = result.user.uid;
+      var displayName = result.user.displayName.split(" ");
+      var email = result.user.email;
+      var uid = result.user.uid;
       // ...
-      let object = { id: Date.now(), name: displayName, lastName: displayName, email: email, username: email, password: null, photo: null, city: null, rol: 'User', uid: uid};
+      console.log(thisTemp.manageUsersService.getAll())
+
+      let object = { id: Date.now(), name: displayName[0], lastName: displayName[1], email: email, username: null, password: null, photo: null, city: null, rol: 'User', uid: uid};
       thisTemp.manageUsersService.merge(object, null);
     }).catch(function(error) {
       console.log(error)
