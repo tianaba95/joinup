@@ -3,8 +3,11 @@ import {AngularFireAuth  } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { moveIn } from '../../../router.animations';
 
+
 import * as firebase from 'firebase/app';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { Observable } from 'rxjs/Observable';
+import { ManageUsersService } from '../../../services/manage-users.service';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +20,7 @@ export class LoginComponent implements OnInit {
 
   error: any;
 
-  constructor(public afAuth: AngularFireAuth,private router: Router) {
-
+  constructor(public afAuth: AngularFireAuth,private router: Router, private manageUsersService: ManageUsersService, public afDB:AngularFireDatabase) {
     this.afAuth.authState.subscribe((auth) => {
       if(auth) {
         this.router.navigateByUrl('/users');
@@ -27,24 +29,30 @@ export class LoginComponent implements OnInit {
 
   }
 
+  private modelPath:string = 'users';
+
   ngOnInit() {
   }
   
   
   loginFb() {
     console.log("LOG WITH FB");
-    /*
-    this.af.auth.login({
-      provider: AuthProviders.Facebook,
-      method: AuthMethods.Popup,
-    }).then(
-    (success) => {
-      this.router.navigate(['/members']);
-    }).catch(
-    (err) => {
-      this.error = err;
-    })
-    */
+    var displayName:string = "";
+    var email:string = "";
+    var uid:string = "";
+    var provider = new firebase.auth.FacebookAuthProvider();
+    var thisTemp = this;
+    this.afAuth.auth.signInWithPopup(provider)
+    .then(function(result) {
+      displayName = result.user.displayName;
+      email = result.user.email;
+      uid = result.user.uid;
+      // ...
+      let object = { id: Date.now(), name: displayName, lastName: displayName, email: email, username: email, password: null, photo: null, city: null, rol: 'User', uid: uid};
+      thisTemp.manageUsersService.merge(object, null);
+    }).catch(function(error) {
+      console.log(error)
+    });
   }
 
   loginGoogle() {

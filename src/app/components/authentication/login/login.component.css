@@ -19,6 +19,7 @@
 #email {
     background: #ECECEC  url('/assets/images/email.svg') no-repeat 25px;
     background-size: 25px;
+    border: 1px solid #95989A;
 }
 
 @media (max-width: 600px) {
