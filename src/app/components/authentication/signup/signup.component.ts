@@ -16,6 +16,9 @@ import { ManageUsersService } from '../../../services/manage-users.service';
   animations: [moveIn(), fallIn()],
   host: { '[@moveIn]': '' }
 })
+
+
+
 export class SignupComponent implements OnInit {
 
   state: string = '';
@@ -36,6 +39,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(formData) {
+    //Default picture
+    const photourl = "./assets/images/user.png";
     if (formData.valid) {
       console.log(formData.value);
       this.afAuth.auth.createUserWithEmailAndPassword(formData.value.email, formData.value.password)
@@ -43,12 +48,12 @@ export class SignupComponent implements OnInit {
         (success) => {
           console.log(success);
           console.log(success.uid);
-          let object = { id: Date.now(), name: formData.value.name, lastName: formData.value.lastname, email: formData.value.email, username: formData.value.email, password: formData.value.password, photo: null, city: null, rol: 'User', uid: success.uid};
+          let object = { id: Date.now(), name: formData.value.name, lastName: formData.value.lastname, email: formData.value.email, username: formData.value.email, password: formData.value.password, photo: photourl, city: null, rol: 'User', uid: success.uid};
           //Updating user
           var user = this.afAuth.auth.currentUser;
           user.updateProfile({
             displayName: object.name + " " + object.lastName,
-            photoURL: "./assets/images/user.png"
+            photoURL: photourl
           }).then(function() {
             console.log("Updated")
           }).catch(function(error) {

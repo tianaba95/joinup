@@ -1,3 +1,11 @@
 :host{
     width: 100%;
 }
+
+.select-container{
+    width: 100%;
+}
+
+#file_input_text_div{
+    width: 50%;
+}

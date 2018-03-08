@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import { MdlDialogService } from '@angular-mdl/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { MdlSelectModule } from '@angular-mdl/select';
 
 @Component({
   selector: 'app-manage-users',

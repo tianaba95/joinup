@@ -119,10 +119,9 @@ html, body {
     
   .select-container select {
       width: 100%;
-      font-size: 1rem;
+      font-size: 1.5rem;
       height: 1.6rem;
       padding: 0.125rem 0.125rem 0.0625rem;
-      background: none;
       border: none;
       line-height: 1.6;
       box-shadow: none;
@@ -135,7 +134,7 @@ html, body {
       pointer-events: none;
       padding-left: 0.125rem;
       z-index: 1;
-      color: #b3b3b3;
+      color: #ffffff;
       font-size: 1rem;
       font-weight: normal;
       -webkit-transition: all 0.28s ease;

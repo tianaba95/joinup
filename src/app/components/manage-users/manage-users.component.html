@@ -87,13 +87,22 @@
       <mdl-textfield type="text" [(ngModel)]="object.city" placeholder="City"></mdl-textfield>
     </div>
 
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+    <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
       <div class="select-container">
         <select [(ngModel)]="object.rol">
-                <option value="" disabled>Select Rol</option>
-                <option *ngFor="let r of my_roles" value = "{{r.name}}">{{r.name}}</option>
-            </select>
-        <label class="control-label">Rol</label><i class="bar"></i>
+                <option class="opciones" value="" disabled>Select Rol</option>
+                <option class="opciones" *ngFor="let r of my_roles" value = "{{r.name}}">{{r.name}}</option>
+        </select>
+        <label class="control-label"></label><i class="bar"></i>
+      </div>
+    </div> -->
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
+      <div class="select-container">
+        <mdl-select [(ngModel)]="object.rol">
+            <mdl-option value="" disabled>Select Rol</mdl-option>
+            <mdl-option *ngFor="let r of my_roles" value = "{{r.name}}">{{r.name}}</mdl-option>
+        </mdl-select>
       </div>
     </div>
 
