@@ -1,5 +1,6 @@
 {
   "compileOnSave": false,
+
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
@@ -15,5 +16,12 @@
       "es2017",
       "dom"
     ]
+  },
+
+  "awesomeTypescriptLoaderOptions": {
+    "doTypeCheck": true,
+    "forkChecker": true,
+    "useBabel": true,
+    "useCache": true
   }
 }
