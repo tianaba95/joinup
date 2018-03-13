@@ -2,10 +2,24 @@
     width: 100%;
 }
 
-.select-container{
-    width: 100%;
+.card{
+    background: white;
+}
+
+.formfields {
+    width: 45%;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+  }
+
+.sup{
+    padding-top: 25px;
 }
 
 #file_input_text_div{
     width: 50%;
 }
+
+

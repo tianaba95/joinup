@@ -62,51 +62,48 @@
 
 <!-- NEW/EDIT -->
 <div [hidden]="!show_form">
-  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <mdl-textfield type="text" [(ngModel)]="object.name" placeholder="Name" autofocus></mdl-textfield>
-    </div>
+    <mat-card class="card">
+      <mat-card-content>
+        <form class="example-form">
+          <div class="row">
+            <mat-form-field class="formfields sup">
+              <input matInput placeholder="Name" [(ngModel)]="object.name" name="first" type="text" autofocus>
+            </mat-form-field>
+            <mat-form-field class="formfields sup">
+              <input matInput placeholder="Last Name" [(ngModel)]="object.lastName" name="last" type="text">
+            </mat-form-field>
+          </div>
+          <div class="row">
+              <mat-form-field class="formfields">
+                <input matInput placeholder="Email" [(ngModel)]="object.email" name="email" type="text">
+              </mat-form-field>
+              <mat-form-field class="formfields">
+                <input matInput placeholder="Username"  [(ngModel)]="object.username" name="username" type="text">
+              </mat-form-field>
+          </div>
+          <div class="row">
+              <mat-form-field class="formfields">
+                <input matInput placeholder="Password" [(ngModel)]="object.password" name="pass" type="password">
+              </mat-form-field>
+              <mat-form-field class="formfields">
+                <input matInput placeholder="City" [(ngModel)]="object.city" name="city" type="text">
+              </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="formfields">
+                <mat-select placeholder="Panel color" name="role" [(ngModel)]="object.rol">
+                  <mat-option value="" disabled>Select role</mat-option>
+                  <mat-option *ngFor="let r of my_roles" [value]="r.name">{{ r.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>  
+          </div>            
+        </form>   
+      </mat-card-content>
+    </mat-card>
 
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <mdl-textfield type="text" [(ngModel)]="object.lastName" placeholder="Lastname"></mdl-textfield>
-    </div>
-
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <mdl-textfield type="text" [(ngModel)]="object.email" placeholder="Email"></mdl-textfield>
-    </div>
-
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <mdl-textfield type="text" [(ngModel)]="object.username" placeholder="Username"></mdl-textfield>
-    </div>
-
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <mdl-textfield type="text" [(ngModel)]="object.password" placeholder="Password"></mdl-textfield>
-    </div>
-
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <mdl-textfield type="text" [(ngModel)]="object.city" placeholder="City"></mdl-textfield>
-    </div>
+  
 
     <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <div class="select-container">
-        <select [(ngModel)]="object.rol">
-                <option class="opciones" value="" disabled>Select Rol</option>
-                <option class="opciones" *ngFor="let r of my_roles" value = "{{r.name}}">{{r.name}}</option>
-        </select>
-        <label class="control-label"></label><i class="bar"></i>
-      </div>
-    </div> -->
-
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <div class="select-container">
-        <mdl-select [(ngModel)]="object.rol">
-            <mdl-option value="" disabled>Select Rol</mdl-option>
-            <mdl-option *ngFor="let r of my_roles" value = "{{r.name}}">{{r.name}}</mdl-option>
-        </mdl-select>
-      </div>
-    </div>
-
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
       <div class="file_input_div">
         <div class="file_input">
           <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
@@ -134,9 +131,9 @@
       <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="createObject()">
         {{btnSaveObject}}
       </button>
-    </div>
+    </div> --> -->
 
-  </div>
+  <!-- </div> -->
 </div>
 
 
