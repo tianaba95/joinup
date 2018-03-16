@@ -4,6 +4,9 @@ import { MatCommonModule } from "@angular/material";
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { MdlModule } from '@angular-mdl/core';
 import { MdlSelectModule } from '@angular-mdl/select';
@@ -108,6 +111,9 @@ export const firebaseConfig = {
     MatCardModule,
     MatInputModule,
     MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatGridListModule,
     BrowserAnimationsModule
   ],
   providers: [

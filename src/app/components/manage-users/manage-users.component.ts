@@ -41,6 +41,7 @@ export class ManageUsersComponent implements OnInit {
 
   selectedFiles: FileList;
   currentUpload: Upload;
+  fileName = "";
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private manageUsersService: ManageUsersService, private dialogService: MdlDialogService) {
 
@@ -133,6 +134,8 @@ export class ManageUsersComponent implements OnInit {
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
+    console.log(this.selectedFiles[0].name);
+    this.fileName = this.selectedFiles[0].name;
   }
 
   uploadSingle() {

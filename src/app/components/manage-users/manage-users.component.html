@@ -61,77 +61,92 @@
 
 
 <!-- NEW/EDIT -->
-<div [hidden]="!show_form">
+<div [hidden]="!show_form" class="panel">
     <mat-card class="card">
       <mat-card-content>
         <form class="example-form">
-          <div class="row">
-            <mat-form-field class="formfields sup">
-              <input matInput placeholder="Name" [(ngModel)]="object.name" name="first" type="text" autofocus>
-            </mat-form-field>
-            <mat-form-field class="formfields sup">
-              <input matInput placeholder="Last Name" [(ngModel)]="object.lastName" name="last" type="text">
-            </mat-form-field>
-          </div>
-          <div class="row">
+          <mat-grid-list cols="2" rowHeight="70px">
+            <mat-grid-tile>
+              <mat-form-field class="formfields sup">
+                  <input matInput placeholder="Name" [(ngModel)]="object.name" name="first" type="text" autofocus>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="formfields sup">
+                  <input matInput placeholder="Last Name" [(ngModel)]="object.lastName" name="last" type="text">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
               <mat-form-field class="formfields">
                 <input matInput placeholder="Email" [(ngModel)]="object.email" name="email" type="text">
               </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
               <mat-form-field class="formfields">
                 <input matInput placeholder="Username"  [(ngModel)]="object.username" name="username" type="text">
               </mat-form-field>
-          </div>
-          <div class="row">
+            </mat-grid-tile>
+            <mat-grid-tile>
               <mat-form-field class="formfields">
                 <input matInput placeholder="Password" [(ngModel)]="object.password" name="pass" type="password">
               </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
               <mat-form-field class="formfields">
                 <input matInput placeholder="City" [(ngModel)]="object.city" name="city" type="text">
               </mat-form-field>
-          </div>
-          <div class="row">
-            <mat-form-field class="formfields">
-                <mat-select placeholder="Panel color" name="role" [(ngModel)]="object.rol">
-                  <mat-option value="" disabled>Select role</mat-option>
-                  <mat-option *ngFor="let r of my_roles" [value]="r.name">{{ r.name }}</mat-option>
-                </mat-select>
-            </mat-form-field>  
-          </div>            
-        </form>   
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="formfields">
+                    <mat-select placeholder="Panel color" name="role" [(ngModel)]="object.rol">
+                      <mat-option value="" disabled>Select role</mat-option>
+                      <mat-option *ngFor="let r of my_roles" [value]="r.name">{{ r.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="formfields">
+                <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+                  <i class="material-icons">file_upload</i>
+                  <input id="file_input_file" class="none" type="file" (change)="detectFiles($event)"/>
+                </label>
+                <mat-form-field class="file_input_text"> 
+                  <input matInput disabled readonly placeholder="Photo" [ngModel]="fileName" name="file" type="text">
+                </mat-form-field> 
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>            
+        </form>  
+        <div class="btncontainer">
+          <button mat-raised-button class="btn" *ngIf="editing" (click)="deleteConfirmation(object,object.name + ' ' + object.lastName)" >
+            {{btnDelete}}
+          </button>
+
+          <button mat-raised-button class="btn" (click)="cancel()">
+            {{btnCancel}}
+          </button>
+
+          <button mat-raised-button class="btn" (click)="createObject()">
+            {{btnSaveObject}}
+          </button>
+
+        </div>
       </mat-card-content>
     </mat-card>
 
-  
+
 
     <!-- <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <div class="file_input_div">
-        <div class="file_input">
-          <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-                <i class="material-icons">file_upload</i>
-                <input id="file_input_file" class="none" type="file" (change)="detectFiles($event)"/>
-              </label>
-        </div>
-        <div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-          <input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" placeholder="Photo"
-            [ngModel]="selectedFiles" />
-          <label class="mdl-textfield__label" for="file_input_text"></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
       <button mdl-button mdl-ripple *ngIf="editing" (click)="deleteConfirmation(object,object.name + ' ' + object.lastName)" >
         {{btnDelete}}
       </button>
 
-      <button mdl-button mdl-ripple (click)="cancel()">
-        {{btnCancel}}
-      </button>
+      
 
       <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="createObject()">
         {{btnSaveObject}}
       </button>
-    </div> --> -->
+    </div>  -->
 
   <!-- </div> -->
 </div>

@@ -2,12 +2,17 @@
     width: 100%;
 }
 
+.panel{
+    padding-top:10px;
+    position: relative;
+}
+
 .card{
     background: white;
 }
 
 .formfields {
-    width: 45%;
+    width: 70%;
     padding-top: 5px;
     padding-right: 15px;
     padding-bottom: 5px;
@@ -18,8 +23,20 @@
     padding-top: 25px;
 }
 
-#file_input_text_div{
-    width: 50%;
+.file_input_text{
+    width: 80%;
+    padding-right: 15px;
+}
+
+.btncontainer{
+    width: 30%;
+    text-align: center;
+    padding-top:10px;
+    margin: auto;
+}
+
+.btn{
+    margin-bottom: 5%;
 }
 
 
