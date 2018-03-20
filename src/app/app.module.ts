@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatCommonModule } from "@angular/material";
+import { MatCommonModule, MatDatepicker } from "@angular/material";
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatNativeDateModule} from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { MdlModule } from '@angular-mdl/core';
 import { MdlSelectModule } from '@angular-mdl/select';
@@ -114,6 +116,8 @@ export const firebaseConfig = {
     MatButtonModule,
     MatIconModule,
     MatGridListModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     BrowserAnimationsModule
   ],
   providers: [

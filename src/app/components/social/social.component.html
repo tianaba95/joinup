@@ -124,7 +124,100 @@
 
 <!-- NEW/EDIT -->
 <div [hidden]="!show_form">
-	<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+	<mat-card class="card">
+		<mat-card-content>
+			<form class="example-form">
+				<mat-grid-list cols="2" rowHeight="70px">
+					<mat-grid-tile>
+						<mat-form-field class="formfields sup">
+							<input matInput type="text" [(ngModel)]="object.title" placeholder="Title" name="title" autofocus>
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields sup">
+							<input matInput type="text" [(ngModel)]="object.category" placeholder="Category" name="category">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput [(ngModel)]="object.location" placeholder="Location" name="location" type="text">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput [(ngModel)]="object.adress" placeholder="Address" name="adress" type="text">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput type="text" [(ngModel)]="object.descriptionShort" placeholder="Description Short" name="descriptionShort">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput [(ngModel)]="object.descriptionLong" placeholder="Description Long" name="descriptionLong" type="text">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput type="text" [(ngModel)]="object.maxAsisstant" placeholder="Max Assistants" name="maxAsisstant">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput [(ngModel)]="object.cost" placeholder="Cost" name="cost" type="text">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput [(ngModel)]="object.fee" placeholder="Fee" name="fee" type="text">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field>
+							<input matInput [matDatepicker]="picker" placeholder="Choose a date">
+							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+							<mat-datepicker #picker></mat-datepicker>
+						</mat-form-field>								  
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<mat-select placeholder="Panel color" name="role" [(ngModel)]="object.rol">
+							<mat-option value="" disabled>Select role</mat-option>
+							<mat-option *ngFor="let r of my_roles" [value]="r.name">{{ r.name }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+					<div class="formfields">
+						<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+						<i class="material-icons">file_upload</i>
+						<input id="file_input_file" class="none" type="file" (change)="detectFiles($event)"/>
+						</label>
+						<mat-form-field class="file_input_text"> 
+						<input matInput disabled readonly placeholder="Photo" [ngModel]="fileName" name="file" type="text">
+						</mat-form-field> 
+					</div>
+					</mat-grid-tile>
+				</mat-grid-list>            
+			</form>  
+			<div class="btncontainer">
+			<button mat-raised-button class="btn" *ngIf="editing" (click)="deleteConfirmation(object,object.name + ' ' + object.lastName)" >
+				{{btnDelete}}
+			</button>
+	
+			<button mat-raised-button class="btn" (click)="cancel()">
+				{{btnCancel}}
+			</button>
+	
+			<button mat-raised-button class="btn" (click)="createObject()">
+				{{btnSaveObject}}
+			</button>
+	
+			</div>
+		</mat-card-content>
+	</mat-card>
+	<!-- <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 		
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
 			<mdl-textfield type="text" [(ngModel)]="object.title" placeholder="Title" autofocus></mdl-textfield>
@@ -215,7 +308,7 @@
 			</button>
 		</div>
 
-	</div>
+	</div> -->
 </div>
 
 
