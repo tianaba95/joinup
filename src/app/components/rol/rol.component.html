@@ -38,23 +38,27 @@
 
 
 <!-- NEW/EDIT -->
-<div [hidden]="!show_form">
-  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
-      <mdl-textfield type="text" [(ngModel)]="object.name" placeholder="Name" autofocus></mdl-textfield>
-    </div>
-    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-      <button mdl-button mdl-ripple *ngIf="editing" (click)="deleteConfirmation(object,object.name)">
-          {{btnDelete}}
-        </button>
+<div [hidden]="!show_form" class="panel">
+  <mat-card class="card">
+    <mat-card-content>
+      <form class="example-form">
+        <mat-form-field class="formfields sup">
+            <input matInput placeholder="Name" [(ngModel)]="object.name" name="role" type="text" autofocus>
+        </mat-form-field>
+      </form>
+      <div class="btncontainer">
+          <button mat-raised-button class="btn" *ngIf="editing" (click)="deleteConfirmation(object,object.name)">
+            {{btnDelete}}
+          </button>
 
-      <button mdl-button mdl-ripple (click)="cancel()">
-          {{btnCancel}}
-        </button>
+          <button mat-raised-button class="btn" (click)="cancel()">
+            {{btnCancel}}
+          </button>
 
-      <button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="createObject()">
-          {{btnSaveObject}}
-        </button>
-    </div>
-  </div>
+          <button mat-raised-button class="btn" (click)="createObject()">
+            {{btnSaveObject}}
+          </button>
+      </div>
+    </mat-card-content>
+    </mat-card>
 </div>
