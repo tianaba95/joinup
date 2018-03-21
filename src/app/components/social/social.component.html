@@ -174,11 +174,21 @@
 						</mat-form-field>
 					</mat-grid-tile>
 					<mat-grid-tile>
-						<mat-form-field>
-							<input matInput [matDatepicker]="picker" placeholder="Choose a date">
+						<mat-form-field class="formfields">
+							<input matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="object.date">
 							<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 							<mat-datepicker #picker></mat-datepicker>
 						</mat-form-field>								  
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput [(ngModel)]="object.startingTime" placeholder="Starting Time" name="startingTime" type="text">
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields">
+							<input matInput [(ngModel)]="object.endingTime" placeholder="Ending Time" name="endingTime" type="text">
+						</mat-form-field>
 					</mat-grid-tile>
 					<mat-grid-tile>
 						<mat-form-field class="formfields">
@@ -219,53 +229,10 @@
 	</mat-card>
 	<!-- <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 		
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.title" placeholder="Title" autofocus></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.category" placeholder="Category"></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.location" placeholder="Location"></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.adress" placeholder="Adress"></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.descriptionShort" placeholder="Description Short"></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.descriptionLong" placeholder="Description Long"></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.maxAsisstant" placeholder="Max Assistants"></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.cost" placeholder="Cost"></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.fee" placeholder="Fee"></mdl-textfield>
-		</div>
-
+		
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
 			<label for="date">Date</label>
 			<ng-datepicker id="date" name="date" [(ngModel)]="object.date"></ng-datepicker>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.startingTime" placeholder="Starting Time"></mdl-textfield>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<mdl-textfield type="text" [(ngModel)]="object.endingTime" placeholder="Ending Time"></mdl-textfield>
 		</div>
 
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">

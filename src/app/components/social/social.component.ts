@@ -6,6 +6,7 @@ import { SocialService } from '../../services/social.service';
 import { MdlDialogService } from '@angular-mdl/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { DateAdapter } from '@angular/material';
 
 @Component({
 	selector: 'app-social',
@@ -60,7 +61,7 @@ export class SocialComponent implements OnInit {
 
 	date: Date;
 
-	constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService: SocialService, private dialogService: MdlDialogService) {
+	constructor(private dateAdapter: DateAdapter<Date>, private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService: SocialService, private dialogService: MdlDialogService) {
 
 		this.afAuth.authState.subscribe((auth) => {
 			if (!auth) {
@@ -141,7 +142,7 @@ export class SocialComponent implements OnInit {
 	viewObject(object) {
 		this.editing = true;
 		this.object = object;
-		console.log(this.object.date)
+		this.object.date = this.dateAdapter.parse(this.object.date, Date);
 		this.show_form = true;
 	}
 
@@ -152,6 +153,7 @@ export class SocialComponent implements OnInit {
 	}
 
 	createObject() {
+		//this.object.date = this.dateAdapter.parse(this.object.date, Date);
 		this.object.date = this.formatDate(this.object.date);
 		this.object.recurrent = false;
 
@@ -306,17 +308,17 @@ export class SocialComponent implements OnInit {
 		this.initObjectCategorySuscribe();
 	}
 
-
-
-
-
 	formatDate(date) {
+		console.log(date)
 		var day = date.getDate();
-		var monthIndex = date.getMonth();
+		console.log("day: "+ day);
+		var monthIndex = date.getMonth() + 1;
+		console.log("month: "+ monthIndex);
 		var year = date.getFullYear();
+		console.log("year: "+ year);
 
-		console.log(day + '/' + monthIndex + '/' + year)
-		return day + '/' + monthIndex + '/' + year;
+		console.log(monthIndex + '/' + day + '/' + year)
+		return monthIndex + '/' + day + '/' + year;
 	}
 
 
