@@ -485,4 +485,9 @@ h2 {
         font-size:1em;
     }
 }
+
+.time-picker-footer > button{
+    width: 30%;
+}
+
 /* END LOGIN */

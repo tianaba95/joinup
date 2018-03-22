@@ -182,7 +182,8 @@
 					</mat-grid-tile>
 					<mat-grid-tile>
 						<mat-form-field class="formfields">
-							<input matInput [(ngModel)]="object.startingTime" placeholder="Starting Time" name="startingTime" type="text">
+							<input matInput atp-time-picker [(ngModel)]="object.startingTime" placeholder="Starting Time" name="startingTime" type="time" arrowStyle="{'background': '#38B9C3', 'color': 'white'}"/>
+							<!-- <input matInput [(ngModel)]="object.startingTime" placeholder="Starting Time" name="startingTime" type="text"> -->
 						</mat-form-field>
 					</mat-grid-tile>
 					<mat-grid-tile>

@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatNativeDateModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
 import { MdlModule } from '@angular-mdl/core';
 import { MdlSelectModule } from '@angular-mdl/select';
@@ -118,6 +119,7 @@ export const firebaseConfig = {
     MatGridListModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    AmazingTimePickerModule,
     BrowserAnimationsModule
   ],
   providers: [

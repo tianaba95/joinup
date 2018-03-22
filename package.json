@@ -29,6 +29,7 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "@google/maps": "^0.4.5",
+    "amazing-time-picker": "^1.5.3",
     "angularfire2": "^5.0.0-rc.3",
     "core-js": "^2.4.1",
     "firebase": "^4.6.1",
