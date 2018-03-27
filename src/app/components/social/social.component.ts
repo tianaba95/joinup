@@ -58,6 +58,7 @@ export class SocialComponent implements OnInit {
 	//Upload Components
 	selectedFiles: FileList;
 	currentUpload: Upload;
+	fileName = "";
 
 	date: Date;
 
@@ -78,17 +79,6 @@ export class SocialComponent implements OnInit {
 		this.initObjectSuscribe();
 		this.initGuideSuscribe();
 		this.initObjectCategorySuscribe();
-
-		/*
-			$('.datepicker').pickadate({
-				selectMonths: true, // Creates a dropdown to control month
-				selectYears: 15, // Creates a dropdown of 15 years to control year,
-				today: 'Today',
-				clear: 'Clear',
-				close: 'Ok',
-				closeOnSelect: false // Close upon selecting a date,
-		  });
-		  */
 	}
 
 	initObjectSuscribe() {
@@ -143,6 +133,8 @@ export class SocialComponent implements OnInit {
 		this.editing = true;
 		this.object = object;
 		this.object.date = this.dateAdapter.parse(this.object.date, Date);
+		this.object.fee = "$" + this.object.fee;
+		this.object.cost = "$" + this.object.cost;
 		this.show_form = true;
 	}
 
@@ -153,8 +145,9 @@ export class SocialComponent implements OnInit {
 	}
 
 	createObject() {
-		//this.object.date = this.dateAdapter.parse(this.object.date, Date);
 		this.object.date = this.formatDate(this.object.date);
+		this.object.fee = this.object.fee.replace(/\$/g, '');
+		this.object.cost = this.object.cost.replace(/\$/g, '');
 		this.object.recurrent = false;
 
 		//TODO IF ADMIN OR GUIDE
@@ -210,6 +203,8 @@ export class SocialComponent implements OnInit {
 
 	detectFiles(event) {
 		this.selectedFiles = event.target.files;
+		console.log(this.selectedFiles[0].name);
+		this.fileName = this.selectedFiles[0].name;
 	}
 	uploadSingle() {
 		let file = this.selectedFiles.item(0)
@@ -224,7 +219,6 @@ export class SocialComponent implements OnInit {
 		//FILTER BY APPROVED BEFORE SHOW
 		//Ensure to get a correct JSON
 		var my_json = JSON.stringify(objects)
-		//We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
 		var objects_filtered = this.jsonFilter(JSON.parse(my_json), { approved: true });
 
 		this.my_list = objects_filtered;

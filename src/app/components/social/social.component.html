@@ -183,19 +183,18 @@
 					<mat-grid-tile>
 						<mat-form-field class="formfields">
 							<input matInput atp-time-picker [(ngModel)]="object.startingTime" placeholder="Starting Time" name="startingTime" type="time" arrowStyle="{'background': '#38B9C3', 'color': 'white'}"/>
-							<!-- <input matInput [(ngModel)]="object.startingTime" placeholder="Starting Time" name="startingTime" type="text"> -->
 						</mat-form-field>
 					</mat-grid-tile>
 					<mat-grid-tile>
 						<mat-form-field class="formfields">
-							<input matInput [(ngModel)]="object.endingTime" placeholder="Ending Time" name="endingTime" type="text">
+							<input matInput atp-time-picker [(ngModel)]="object.endingTime" placeholder="Ending Time" name="endingTime" type="time" arrowStyle="{'background': '#38B9C3', 'color': 'white'}"/>
 						</mat-form-field>
 					</mat-grid-tile>
 					<mat-grid-tile>
 						<mat-form-field class="formfields">
-							<mat-select placeholder="Panel color" name="role" [(ngModel)]="object.rol">
-							<mat-option value="" disabled>Select role</mat-option>
-							<mat-option *ngFor="let r of my_roles" [value]="r.name">{{ r.name }}</mat-option>
+							<mat-select placeholder="Guide" name="guide" [(ngModel)]="object.guide">
+								<mat-option value="" disabled>Select Guide</mat-option>
+								<mat-option *ngFor="let g of my_guides" [value]="g.name + g.lastName">{{g.name}} {{g.lastName}}</mat-option>
 							</mat-select>
 						</mat-form-field>
 					</mat-grid-tile>
@@ -228,55 +227,6 @@
 			</div>
 		</mat-card-content>
 	</mat-card>
-	<!-- <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-		
-		
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<label for="date">Date</label>
-			<ng-datepicker id="date" name="date" [(ngModel)]="object.date"></ng-datepicker>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<div class="select-container">
-				<select [(ngModel)]="object.guide">
-					  <option value="" disabled>Select Guide</option>
-					  <option *ngFor="let g of my_guides" value = "{{g.name}} {{g.lastName}}">{{g.name}} {{g.lastName}}</option>
-				  </select>
-				<label class="control-label">Guide</label><i class="bar"></i>
-			</div>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<div class="file_input_div">
-				<div class="file_input">
-					<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-					  <i class="material-icons">file_upload</i>
-					  <input id="file_input_file" class="none" type="file" (change)="detectFiles($event)"/>
-					</label>
-				</div>
-				<div id="file_input_text_div" class="mdl-textfield mdl-js-textfield textfield-demo">
-					<input class="file_input_text mdl-textfield__input" type="text" disabled readonly id="file_input_text" placeholder="Photo"
-					 [ngModel]="selectedFiles" />
-					<label class="mdl-textfield__label" for="file_input_text"></label>
-				</div>
-			</div>
-		</div>
-
-		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop">
-			<button mdl-button mdl-ripple *ngIf="editing" (click)="deleteConfirmation(object,object.name + ' ' + object.lastName)">
-			  {{btnDelete}}
-			</button>
-
-			<button mdl-button mdl-ripple (click)="cancel()">
-			  {{btnCancel}}
-			</button>
-
-			<button mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple (click)="createObject()">
-			  {{btnSaveObject}}
-			</button>
-		</div>
-
-	</div> -->
 </div>
 
 

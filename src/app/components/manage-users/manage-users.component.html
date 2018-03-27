@@ -98,7 +98,7 @@
             </mat-grid-tile>
             <mat-grid-tile>
                 <mat-form-field class="formfields">
-                    <mat-select placeholder="Panel color" name="role" [(ngModel)]="object.rol">
+                    <mat-select placeholder="Role" name="role" [(ngModel)]="object.rol">
                       <mat-option value="" disabled>Select role</mat-option>
                       <mat-option *ngFor="let r of my_roles" [value]="r.name">{{ r.name }}</mat-option>
                     </mat-select>
