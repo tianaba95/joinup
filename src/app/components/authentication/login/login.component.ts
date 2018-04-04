@@ -19,10 +19,12 @@ export class LoginComponent implements OnInit {
 
   error: any;
   my_list: any[];
+  loginUrl = "http://localhost:8282/home";
 
   constructor(public afAuth: AngularFireAuth,private router: Router, private manageUsersService: ManageUsersService) {
     this.afAuth.authState.subscribe((auth) => {
       if(auth) {
+        console.log(auth);
         this.router.navigateByUrl('/users');
       }
     });
@@ -34,6 +36,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   
+  linkToUrlFunction(url){
+    window.open(url);
+  }
+
   getObjectList() {
     return this.manageUsersService.getAll();
   }
@@ -76,6 +82,7 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     .then(
       (success) => {
+      console.log(success);
       this.router.navigate(['/users']);
     }).catch(
       (err) => {
