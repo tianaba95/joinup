@@ -19,16 +19,33 @@ export class LoginComponent implements OnInit {
 
   error: any;
   my_list: any[];
-  loginUrl = "http://localhost:8282/home";
+  email: String;
+  found: any;
+  redUrl = "http://localhost:8282/home";
 
   constructor(public afAuth: AngularFireAuth,private router: Router, private manageUsersService: ManageUsersService) {
     this.afAuth.authState.subscribe((auth) => {
       if(auth) {
-        console.log(auth);
-        this.router.navigateByUrl('/users');
+        this.email = auth.email;
+        if(this.my_list){
+          for (var i=0; i < this.my_list.length; i++) {
+            if(this.my_list[i].email == this.email){
+              this.found = this.my_list[i];
+            }
+          }
+          if(this.found){
+            if(this.found.rol == "User"){
+              this.linkToUrlFunction(this.redUrl);
+            } else {
+        
+              this.router.navigateByUrl('/users');
+            }
+
+          }
+        }
       }
     });
-    this.initObjectSuscribe();
+    this.initObjectSuscribe(); 
   }
 
   private modelPath:string = 'users';
@@ -37,7 +54,7 @@ export class LoginComponent implements OnInit {
   }
   
   linkToUrlFunction(url){
-    window.open(url);
+    window.open(url,"_self");
   }
 
   getObjectList() {
@@ -90,5 +107,20 @@ export class LoginComponent implements OnInit {
     });
 
 }
+
+
+  // getRolList(email) {
+  //   return this.manageUsersService.getUserRol(email);
+  // }
+
+  // initRolSuscribe(email) {
+  //   this.getRolList(email)
+  //     .subscribe(
+  //     roles => {
+  //       this.my_roles = roles;
+  //     }
+  //     );
+  //   console.log(this.my_roles)
+  // }
 
 }

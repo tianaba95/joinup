@@ -91,3 +91,20 @@ export class ManageUsersService {
 //------END UPLOAD------
 
 }
+
+//Just in case!
+  // getUserRol(emaile){
+  //   console.log("into getusersol")
+  //   if(emaile != ""){
+  //     var query = this.afDB.list(`/${this.modelPath}`, { query: {
+  //       orderByChild: 'email',
+  //       equalTo: emaile,
+  //       limitToFirst: 100
+  //     }} );
+  //     console.log("Query");
+  //     console.log(query);
+  //     return query;
+  //   }else{
+  //     return this.afDB.list(`/${this.modelPath}`);
+  //   }
+  // }
