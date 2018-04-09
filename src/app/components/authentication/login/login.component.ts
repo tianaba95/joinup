@@ -35,12 +35,10 @@ export class LoginComponent implements OnInit {
           }
           if(this.found){
             if(this.found.rol == "User"){
-              this.linkToUrlFunction(this.redUrl);
-            } else {
-        
+              this.linkToUrlFunction(this.redUrl, this.found.id);
+            } else {     
               this.router.navigateByUrl('/users');
             }
-
           }
         }
       }
@@ -53,8 +51,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   
-  linkToUrlFunction(url){
-    window.open(url,"_self");
+  linkToUrlFunction(url, id){
+    var openingUrl = url + '/' + id;
+    window.open(openingUrl,"_self");
   }
 
   getObjectList() {
@@ -107,20 +106,5 @@ export class LoginComponent implements OnInit {
     });
 
 }
-
-
-  // getRolList(email) {
-  //   return this.manageUsersService.getUserRol(email);
-  // }
-
-  // initRolSuscribe(email) {
-  //   this.getRolList(email)
-  //     .subscribe(
-  //     roles => {
-  //       this.my_roles = roles;
-  //     }
-  //     );
-  //   console.log(this.my_roles)
-  // }
 
 }
