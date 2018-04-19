@@ -19,7 +19,7 @@ export class AsideMenuComponent implements OnInit {
 
   menu_list = [
     {id:1,text:'Users',icon:'report', children:[
-      {text:'Manage Users', link: 'users'},{text:'Manage Roles', link: 'rol'}
+      {text:'Manage Users', link: 'users'},{text:'Manage Roles', link: 'rol'},{text:'Manage Goals', link: 'goals'}
     ]},
     {id:2,text:'Social',icon:'report', children:[
       {text:'Plans', link: 'social'},

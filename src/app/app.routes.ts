@@ -18,6 +18,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { SignupComponent } from './components/authentication/signup/signup.component';
 import { EmailComponent } from './components/authentication/email/email.component';
 import { MembersComponent } from './components/authentication/members/members.component';
+import { ObjectivesComponent } from './components/objectives/objectives.component';
 
 import { AuthGuard } from './services/auth.service';
 
@@ -25,6 +26,7 @@ const app_routes: Routes = [
     { path: 'demo', component: DemoComponent, canActivate: [AuthGuard] },
     { path: 'users', component: ManageUsersComponent, canActivate: [AuthGuard] },
     { path: 'rol', component: RolComponent },
+    { path: 'goals', component: ObjectivesComponent },
     { path: 'social', component: SocialComponent },
     { path: 'plan_asistentes', component: PlanAsistentesComponent },
     { path: 'calificacion_plan_usuario', component: CalificacionPlanUsuarioComponent },

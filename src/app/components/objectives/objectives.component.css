@@ -1,0 +1,31 @@
+:host{
+    width: 100%;
+}
+
+.panel{
+    padding-top:10px;
+    position: relative;
+}
+
+.formfields {
+    width: 50%;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+  }
+
+.sup{
+    padding-top: 25px;
+}
+
+.btncontainer{
+    width: 30%;
+    text-align: center;
+    padding-top:10px;
+    margin: auto;
+}
+
+.btn{
+    margin-bottom: 5%;
+}

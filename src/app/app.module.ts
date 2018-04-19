@@ -51,6 +51,8 @@ import { IwanttoteachFormComponent } from './components/iwanttoteach-form/iwantt
 import { ManageUsersService } from './services/manage-users.service';
 import { RolService } from './services/rol.service';
 import { SocialService } from './services/social.service';
+import { ObjectiveService } from './services/objective.service';
+
 import { TipoActividadSocialService } from './services/tipo-actividad-social-service';
 import { LugarPlanesService } from './services/lugar-planes.service';
 import { ContactMessageService } from './services/contact-message.service';
@@ -60,6 +62,7 @@ import { SignupComponent } from './components/authentication/signup/signup.compo
 import { MembersComponent } from './components/authentication/members/members.component';
 
 import { AuthGuard } from './services/auth.service';
+import { ObjectivesComponent } from './components/objectives/objectives.component';
 
 
 export const firebaseConfig = {
@@ -95,7 +98,8 @@ export const firebaseConfig = {
     LoginComponent,
     EmailComponent,
     SignupComponent,
-    MembersComponent
+    MembersComponent,
+    ObjectivesComponent
   ],
   imports: [
     BrowserModule,
@@ -130,6 +134,7 @@ export const firebaseConfig = {
     TipoActividadSocialService,
     LugarPlanesService,
     ContactMessageService,
+    ObjectiveService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

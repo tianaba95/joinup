@@ -1,0 +1,64 @@
+<div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+    <ng-container *ngTemplateOutlet="table"></ng-container>
+  </div>
+</div>
+
+
+
+<!--TABLE. SHOULD MAKE A COMPONENT -->
+<ng-template #table>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Goal</th>
+        <th scope="col" style="width:150px;">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let o of my_list" [ngClass]="{'table-row-active': rowElementActive === o.id }">
+        <td scope="row" data-label="Role Name">{{o.name}}</td>
+
+        <td>
+          <a (click)="viewObject(o)" class="button"><i class="material-icons">mode_edit</i></a>
+          <a (click)="deleteConfirmation(o)" class="button"><i class="material-icons">delete</i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+
+<!-- ADD BUTTON -->
+<button [hidden]="show_form" id="add-fixed_btn" mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple (click)="addObject()">
+  <mdl-icon>add</mdl-icon>
+</button>
+
+
+
+<!-- NEW/EDIT -->
+<div [hidden]="!show_form" class="panel">
+  <mat-card class="card">
+    <mat-card-content>
+      <form class="example-form">
+        <mat-form-field class="formfields sup">
+            <input matInput placeholder="Name" [(ngModel)]="object.name" name="role" type="text" autofocus>
+        </mat-form-field>
+      </form>
+      <div class="btncontainer">
+          <button mat-raised-button class="btn" *ngIf="editing" (click)="deleteConfirmation(object,object.name)">
+            {{btnDelete}}
+          </button>
+
+          <button mat-raised-button class="btn" (click)="cancel()">
+            {{btnCancel}}
+          </button>
+
+          <button mat-raised-button class="btn" (click)="createObject()">
+            {{btnSaveObject}}
+          </button>
+      </div>
+    </mat-card-content>
+    </mat-card>
+</div>
