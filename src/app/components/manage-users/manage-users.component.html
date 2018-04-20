@@ -85,7 +85,7 @@
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field class="formfields">
-                <input matInput placeholder="Password" [(ngModel)]="object.password" name="pass" type="password">
+                <input matInput placeholder="Password" disabled="!object.password" [(ngModel)]="object.password" name="pass" type="password">
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
