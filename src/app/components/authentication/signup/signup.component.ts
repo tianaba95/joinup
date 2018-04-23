@@ -24,6 +24,10 @@ export class SignupComponent implements OnInit {
   state: string = '';
   error: any;
 
+  email: any;
+  password: any;
+  name: any;
+  lastname: any;
   @ViewChildren('focus_input') fi;
 
   ngAfterViewInit() {

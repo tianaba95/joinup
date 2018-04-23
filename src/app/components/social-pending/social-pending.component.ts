@@ -17,7 +17,8 @@ export class SocialPendingComponent implements OnInit {
 	//Page Strings
 	pageTitle = "Social Plans Pending Approve";
   btnApprove = "Approve";
-  btnReject = "Reject";
+	btnReject = "Reject";
+	show_form = false;
 
 	//Component
 	object = {

@@ -75,12 +75,12 @@ export const firebaseConfig = {
 
 //Prod
 // export const firebaseConfig = {
-  // apiKey: "AIzaSyDOE-zGBdOqDX363HUd_7lUMAo-TQ-wO9M",
-  // authDomain: "joinup-prod.firebaseapp.com",
-  // databaseURL: "https://joinup-prod.firebaseio.com",
-  // projectId: "joinup-prod",
-  // storageBucket: "joinup-prod.appspot.com",
-  // messagingSenderId: "1001729495066"
+//   apiKey: "AIzaSyDOE-zGBdOqDX363HUd_7lUMAo-TQ-wO9M",
+//   authDomain: "joinup-prod.firebaseapp.com",
+//   databaseURL: "https://joinup-prod.firebaseio.com",
+//   projectId: "joinup-prod",
+//   storageBucket: "joinup-prod.appspot.com",
+//   messagingSenderId: "1001729495066"
 // }
 
 @NgModule({

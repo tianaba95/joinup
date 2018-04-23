@@ -10,7 +10,22 @@
 			</mdl-tab-panel>
 		  </mdl-tabs>
 		</div>
-	  </div>
+</div>
+
+<!--TABLE. SHOULD MAKE A COMPONENT -->
+<ng-template #table>
+	<table>
+	  <thead>
+		<tr>
+		  <th scope="col">Social plans</th>
+		  <th scope="col" style="width:150px;">Action</th>
+		</tr>
+	  </thead>
+  
+	  <tbody>
+	  </tbody>
+	</table>
+  </ng-template>
 
 <div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 	<div *ngFor="let item of my_list" class="mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop">

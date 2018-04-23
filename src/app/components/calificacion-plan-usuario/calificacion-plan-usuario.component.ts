@@ -14,6 +14,7 @@ export class CalificacionPlanUsuarioComponent implements OnInit {
 
   //Page Strings
   pageTitle = "Social Plans Rate";
+  show_form = false;
 
   //Component Strings
   //Component

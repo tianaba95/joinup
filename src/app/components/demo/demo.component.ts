@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class DemoComponent implements OnInit {
 
   pageTitle = 'Demo';
+  nombre: any;
 
   kidGenre = '';
   signoHijo = '';
