@@ -32,8 +32,8 @@ export class AsideMenuComponent implements OnInit {
     ]},
     {id:3,text:'Contact Message',icon:'report', link: 'contact_message'},
     {id:4,text:'I want to teach',icon:'report', children:[
-      {text:'Applications', link: 'iwanttoteach'},
-      {text:'Form', link: 'iwanttoteach_form'}
+      {text:'Applications', link: 'iwanttoteach'}
+      // {text:'Form', link: 'iwanttoteach_form'}
     ]},
     {id:5,text:'Demo',icon:'report', link: 'demo'}
     //{text:'Manage Users', link: 'users', icon: 'report'},

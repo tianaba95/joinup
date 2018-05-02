@@ -1,3 +1,44 @@
-<p>
-  iwanttoteach works!
-</p>
+<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+    <mdl-tabs mdl-ripple mdl-tab-active-index="0">
+      <mdl-tab-panel mdl-tab-panel-title="Inbox">
+          <ng-container *ngFor="let item of my_list">
+            <ng-container *ngTemplateOutlet="message1; context: {$implicit: item}"></ng-container>
+          </ng-container>
+        </mdl-tab-panel>
+    
+      <mdl-tab-panel mdl-tab-panel-title="Archive">
+        <ng-container *ngTemplateOutlet="message1"></ng-container>
+      </mdl-tab-panel>
+    </mdl-tabs>
+  </div>
+</div>
+
+
+
+<!--MESSAGE SAMPLES. SHOULD MAKE A COMPONENT WITH A CARD-->
+<ng-template #message1 let-item>
+  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop ">
+      <img src="./assets/images/user.jpg" />
+    </div>
+
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-desktop">
+      <h5>{{item?.title}}</h5>
+      <input type="checkbox" class="read-more-state" id="post-{{item?.id}}" />
+      <p class="read-more-wrap">{{item?.text_p}}<span class="read-more-target">{{item?.text_span}}</span></p>
+      <label *ngIf="item?.text_span" for="post-{{item?.id}}" class="read-more-trigger"></label>
+    </div>
+
+    <div class="card-border">
+      <!--button mdl-button mdl-colored mdl-ripple [routerLink]="home">
+        Read More
+      </button-->
+
+      <a (click)="archiveObject(item)" class="button float-right"><i class="material-icons">check_circle</i></a>
+      <a (click)="deleteConfirmation(item)" class="button float-right"><i class="material-icons">delete</i></a>
+    </div>
+  </div>
+</ng-template>
+
+
