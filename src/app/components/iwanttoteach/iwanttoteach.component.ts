@@ -17,7 +17,7 @@ export class IwanttoteachComponent implements OnInit {
   pageTitle = "Want to Teach";
 
   //Component Strings
-  object = { id: null, name: null, whyguide: null, phone: null, resume: null };
+  object = { id: null, name: null, whyguide: null, phone: null, resume: null, photo: null, userId: null };
   my_list: any[];
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private dialogService: MdlDialogService, private wantoteachService: WantoteachService, private manageuserService: ManageUsersService) {
@@ -73,7 +73,7 @@ export class IwanttoteachComponent implements OnInit {
   }
 
   resetObject() {
-    this.object = { id: null, name: null, whyguide: null, phone: null, resume: null };
+    this.object = { id: null, name: null, whyguide: null, phone: null, resume: null, photo: null, userId: null };
   }
 
   downloadResume(id){
