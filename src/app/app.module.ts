@@ -52,6 +52,7 @@ import { ManageUsersService } from './services/manage-users.service';
 import { RolService } from './services/rol.service';
 import { SocialService } from './services/social.service';
 import { ObjectiveService } from './services/objective.service';
+import { WantoteachService } from './services/wantoteach.service';
 
 import { TipoActividadSocialService } from './services/tipo-actividad-social-service';
 import { LugarPlanesService } from './services/lugar-planes.service';
@@ -145,6 +146,7 @@ export const firebaseConfig = {
     LugarPlanesService,
     ContactMessageService,
     ObjectiveService,
+    WantoteachService,
     AuthGuard
   ],
   bootstrap: [AppComponent]
