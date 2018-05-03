@@ -19,14 +19,14 @@
     </div>
 
     <div class="mdl-cell mdl-cell--10-col mdl-cell--10-col-desktop">
-      <h5>{{item.name}}</h5>
-      <input type="checkbox" class="read-more-state" id="post-{{item?.id}}" />
-      <p class="read-more-wrap">{{item?.whyguide}}<span class="read-more-target">{{item?.whyguide}}</span></p>
-      <label *ngIf="item?.text_span" for="post-{{item?.id}}" class="read-more-trigger"></label>
+      <h5>{{item?.name}}</h5>
+      <p class="read-more-wrap">{{item?.whyguide}}</p>
+      <p class="read-more-wrap">Phone: {{item?.phone}} -  Email: {{item?.email}}</p>
+      <a><label class="read-more-trigger" (click)="downloadResume(item?.id)">Download Resume</label></a>
     </div>
 
     <div class="card-border">
-      <a (click)="archiveObject(item)" class="button float-right"><i class="material-icons">check_circle</i></a>
+      <a (click)="changetoGuide(item)" class="button float-right"><i class="material-icons">check_circle</i></a>
       <a (click)="deleteConfirmation(item)" class="button float-right"><i class="material-icons">delete</i></a>
     </div>
   </div>

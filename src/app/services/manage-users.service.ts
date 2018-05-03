@@ -47,6 +47,10 @@ export class ManageUsersService {
     }
   }
 
+  update(id, updateObject){
+    this.afDB.database.ref(`${this.modelPath}/` + id).update(updateObject);
+  }
+
   remove(id){
     this.afDB.database.ref(`${this.modelPath}/` + id).remove();
   }

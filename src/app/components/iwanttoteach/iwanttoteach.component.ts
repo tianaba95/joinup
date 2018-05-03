@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MdlDialogService } from '@angular-mdl/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { WantoteachService } from '../../services/wantoteach.service';
+import { ManageUsersService } from '../../services/manage-users.service';
 
 @Component({
   selector: 'app-iwanttoteach',
@@ -14,24 +15,17 @@ export class IwanttoteachComponent implements OnInit {
   
   //Page Strings
   pageTitle = "Want to Teach";
-  username_img: any;
 
   //Component Strings
   object = { id: null, name: null, whyguide: null, phone: null, resume: null };
   my_list: any[];
 
-  constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private dialogService: MdlDialogService, private wantoteachService: WantoteachService) {
+  constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private dialogService: MdlDialogService, private wantoteachService: WantoteachService, private manageuserService: ManageUsersService) {
 
     this.afAuth.authState.subscribe((auth) => {
       if (!auth) {
         this.router.navigateByUrl('/login');
-      } else {
-        var user = this.afAuth.auth.currentUser;
-        if (user){
-          if(user.photoURL){
-            this.username_img = user.photoURL;}
-        }
-      }
+      } 
     });
 
     this.initObjectSuscribe();
@@ -56,31 +50,21 @@ export class IwanttoteachComponent implements OnInit {
 
   setObject(objects) {
     this.my_list = objects;
-    console.log(this.my_list[0])
   }
 
-  removeObject(object) {
-    this.wantoteachService.remove(this.object.id);
+  removeObject(id) {
+    this.wantoteachService.remove(id);
     this.resetObject();
-  }
-
-  archiveObject(object) {
-    console.log("ARCHVO")
-    console.log(object)
-    object.archive = 1;
-  }
-
-  unArchiveObject(object) {
-    object.archive = 0;
   }
 
   deleteConfirmation(object) {
     var deleteObject = object.name;
 
     let result = this.dialogService.confirm('Delete ' + deleteObject + '?', 'No', 'Yes');
+    var thisTemp = this;
     result.subscribe(() => {
       console.log('confirmed');
-      this.removeObject(object);
+      thisTemp.removeObject(object.id);
     },
       (err: any) => {
         console.log('declined');
@@ -90,6 +74,20 @@ export class IwanttoteachComponent implements OnInit {
 
   resetObject() {
     this.object = { id: null, name: null, whyguide: null, phone: null, resume: null };
+  }
+
+  downloadResume(id){
+    this.my_list.forEach(function (element) {
+      if (element.id == id) {
+        window.open(element.resume);
+      } 
+    });
+  }
+
+  changetoGuide(object){
+    console.log(object.userId)
+    let updateObject = {rol: 'Guide'};
+    this.manageuserService.update(object.userId, updateObject);
   }
 
 }

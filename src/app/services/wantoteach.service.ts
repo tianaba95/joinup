@@ -64,6 +64,7 @@ export class WantoteachService {constructor(public afDB:AngularFireDatabase) { }
     private saveFileData(upload: Upload) {
     this.afDB.list(`${this.basePath}/`).push(upload);
     }
+
   //------END UPLOAD------
 
 }
