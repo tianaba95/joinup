@@ -5,6 +5,8 @@ import { MdlDialogService } from '@angular-mdl/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { WantoteachService } from '../../services/wantoteach.service';
 import { ManageUsersService } from '../../services/manage-users.service';
+import { SendmailService } from '../../services/sendmail.service';
+
 
 @Component({
   selector: 'app-iwanttoteach',
@@ -20,7 +22,7 @@ export class IwanttoteachComponent implements OnInit {
   object = { id: null, name: null, whyguide: null, phone: null, resume: null, photo: null, userId: null };
   my_list: any[];
 
-  constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private dialogService: MdlDialogService, private wantoteachService: WantoteachService, private manageuserService: ManageUsersService) {
+  constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private dialogService: MdlDialogService, private wantoteachService: WantoteachService, private manageuserService: ManageUsersService, private sendmailService: SendmailService) {
 
     this.afAuth.authState.subscribe((auth) => {
       if (!auth) {
@@ -84,6 +86,10 @@ export class IwanttoteachComponent implements OnInit {
     });
   }
 
+  sendMail(email) {
+    return this.sendmailService.sendEmail(email);
+  }
+
   changetoGuide(object){
     console.log(object.userId)
 
@@ -100,6 +106,7 @@ export class IwanttoteachComponent implements OnInit {
       }
     );
 
+    this.sendMail(object.email);
   }
 
 }
