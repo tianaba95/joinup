@@ -86,8 +86,20 @@ export class IwanttoteachComponent implements OnInit {
 
   changetoGuide(object){
     console.log(object.userId)
-    let updateObject = {rol: 'Guide'};
-    this.manageuserService.update(object.userId, updateObject);
+
+    let result = this.dialogService.confirm('Convert ' + object.name + ' to guide?', 'No', 'Yes');
+    var thisTemp = this;
+    result.subscribe(() => {
+      console.log('confirmed');
+      let updateObject = {rol: 'Guide', whyguide: object.whyguide};
+      thisTemp.manageuserService.update(object.userId, updateObject);
+      thisTemp.removeObject(object.id);
+    },
+      (err: any) => {
+        console.log('declined');
+      }
+    );
+
   }
 
 }
