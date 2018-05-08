@@ -4,6 +4,8 @@ import { MdlDialogService } from '@angular-mdl/core';
 import { ContactMessageService } from '../../services/contact-message.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { ManageUsersService } from '../../services/manage-users.service';
+
 
 declare var $: any;
 
@@ -16,13 +18,16 @@ export class ContactMessageComponent implements OnInit {
 
   //Page Strings
   pageTitle = "Contact Message";
+  
 
   //Component Strings
   object = { id: null, title: null, text: null, user_id: null };
   my_list: any[];
+  isguide: any;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private contactMessageService: ContactMessageService, private dialogService: MdlDialogService) {
-
+  constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private contactMessageService: ContactMessageService, private dialogService: MdlDialogService, private manageUsersService: ManageUsersService) {
+    this.isguide = this.manageUsersService.isguide;
+    console.log(this.isguide)
     this.afAuth.authState.subscribe((auth) => {
       if (!auth) {
         this.router.navigateByUrl('/login');

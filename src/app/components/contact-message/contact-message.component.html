@@ -1,4 +1,9 @@
-<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+<div [hidden]="!isguide" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <h1> You are not authorized to see this page!</h1>
+</div>
+
+<div [hidden]="isguide" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
   <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
     <mdl-tabs mdl-ripple mdl-tab-active-index="0">
       <mdl-tab-panel mdl-tab-panel-title="Inbox">

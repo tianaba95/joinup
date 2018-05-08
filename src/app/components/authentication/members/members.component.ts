@@ -20,13 +20,10 @@ export class MembersComponent implements OnInit {
     this.afAuth.authState.subscribe((auth) => {
       if(auth) {
         this.name = auth;
-        console.log("----------------")
-        console.log(auth)
+        console.log(name)
         console.log("----------------")
       }
     });
-
-
   }
 
   logout() {
@@ -34,7 +31,6 @@ export class MembersComponent implements OnInit {
     console.log('logged out');
     this.router.navigateByUrl('/login');
   }
-
 
   ngOnInit() {
   }

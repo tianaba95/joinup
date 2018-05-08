@@ -13,6 +13,8 @@ export class ManageUsersService {
 
   constructor(public afDB:AngularFireDatabase) { }
   
+  public isguide:boolean = false;
+
   private modelPath:string = 'users';
   private rolPath:string = 'rol';
   private basePath:string = '/uploads';

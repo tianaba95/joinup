@@ -25,7 +25,7 @@
           <th scope="col" class="hide-sm-2">Email</th>
           <th scope="col" class="hide-sm-1">City</th>
           <th scope="col">Rol</th>
-          <th scope="col" style="width:150px;">Action</th>
+          <th scope="col" style="width:150px;" [hidden]="isguide">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -42,8 +42,8 @@
           <td data-label="Email" class="hide-sm-2" [ngClass]="{'table-display-none' : !o.email}">{{o.email}}</td>
           <td data-label="City" class="hide-sm-1" [ngClass]="{'table-display-none' : !o.city}">{{o.city}}</td>
           <td data-label="Rol" [ngClass]="{'table-display-none' : !o.rol}">{{o.rol}}</td>
-          <td>
-            <a (click)="viewObject(o)" class="button"><i class="material-icons">mode_edit</i></a>
+          <td [hidden]="isguide">
+            <a (click)="viewObject(o)" class="button" ><i class="material-icons">mode_edit</i></a>
             <a (click)="deleteConfirmation(o)" class="button"><i class="material-icons">delete</i></a>
           </td>
 
@@ -52,7 +52,7 @@
     </table>
 </ng-template>
 
-<button [hidden]="show_form" id="add-fixed_btn" mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple (click)="addObject()">
+<button [hidden]="show_form" id="add-fixed_btn" mdl-button mdl-button-type="fab" mdl-colored="accent" mdl-ripple (click)="addObject()" [disabled]="isguide">
   <mdl-icon>add</mdl-icon>
 </button>
 

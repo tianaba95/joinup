@@ -13,6 +13,7 @@ import { MdlSelectModule } from '@angular-mdl/select';
   templateUrl: './manage-users.component.html',
   styleUrls: ['./manage-users.component.css']
 })
+
 export class ManageUsersComponent implements OnInit {
 
   //Page Strings
@@ -24,7 +25,7 @@ export class ManageUsersComponent implements OnInit {
 
   show_form = false;
   editing = false;
-
+  
   rowElementActive: any;
 
   object = { id: null, name: null, lastName: null, email: null, username: null, password: null, photo: null, city: null, rol: null };
@@ -42,11 +43,17 @@ export class ManageUsersComponent implements OnInit {
   selectedFiles: FileList;
   currentUpload: Upload;
   fileName = "";
+  name: any;
+  isguide: any;
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private manageUsersService: ManageUsersService, private dialogService: MdlDialogService) {
-
+    this.isguide = false;
     this.initObjectSuscribe();
     this.initRolSuscribe();
+    var user = this.afAuth.auth.currentUser;
+    if (user){
+      this.name = user.email;
+    }
   }
 
   ngOnInit() {
@@ -58,6 +65,18 @@ export class ManageUsersComponent implements OnInit {
       .subscribe(
       objects => {
         this.my_list = objects;
+        let thisTemp = this;
+        this.my_list.forEach( function (arrayItem)
+        {
+          if(arrayItem.email == thisTemp.name){
+            if(arrayItem.rol == 'Guide'){
+              thisTemp.manageUsersService.isguide = true;
+              thisTemp.isguide = true;
+              console.log(thisTemp.isguide)
+            }
+          }
+        });
+        console.log(this.name);
       }
       );
   }

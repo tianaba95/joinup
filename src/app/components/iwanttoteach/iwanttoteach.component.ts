@@ -21,9 +21,9 @@ export class IwanttoteachComponent implements OnInit {
   //Component Strings
   object = { id: null, name: null, whyguide: null, phone: null, resume: null, photo: null, userId: null };
   my_list: any[];
-
+  isguide:any;
   constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private dialogService: MdlDialogService, private wantoteachService: WantoteachService, private manageuserService: ManageUsersService, private sendmailService: SendmailService) {
-
+    this.isguide = this.manageuserService.isguide;
     this.afAuth.authState.subscribe((auth) => {
       if (!auth) {
         this.router.navigateByUrl('/login');
