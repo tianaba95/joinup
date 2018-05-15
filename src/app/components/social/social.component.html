@@ -127,7 +127,7 @@
 			</mdl-card-supporting-text>
 
 			<mdl-card-actions class="text-right" mdl-card-border>
-				<button class="primary-background primary-background-hover" mdl-button mdl-colored mdl-ripple (click)="viewObject(item)">
+				<button class="primary-background primary-background-hover" mdl-button mdl-colored mdl-ripple (click)="viewObject(item)" [disabled]="isguide">
 					{{btnEdit}}
 				</button>
 			</mdl-card-actions >

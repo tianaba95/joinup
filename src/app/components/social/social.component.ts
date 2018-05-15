@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Upload } from '../../uploads/upload';
 import { PageTitleService } from '../../services/page-title.service';
 import { SocialService } from '../../services/social.service';
+import { ManageUsersService } from '../../services/manage-users.service';
 
 import { MdlDialogService } from '@angular-mdl/core';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -22,6 +23,7 @@ export class SocialComponent implements OnInit {
 	btnCancel = "Cancel";
 	btnSaveObject = "Save";
 	btnEdit = "Edit";
+	isguide: any;
 
 	//Component
 	object = {
@@ -62,13 +64,16 @@ export class SocialComponent implements OnInit {
 
 	date: Date;
 
-	constructor(private dateAdapter: DateAdapter<Date>, private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService: SocialService, private dialogService: MdlDialogService) {
+	constructor(private dateAdapter: DateAdapter<Date>, private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService: SocialService, private dialogService: MdlDialogService, private manageUsersService: ManageUsersService) {
 
 		this.afAuth.authState.subscribe((auth) => {
 			if (!auth) {
 				this.router.navigateByUrl('/login');
 			}
 		});
+
+		this.isguide = this.manageUsersService.isguide;
+		console.log(this.isguide)
 
 		this.date = new Date();
 		this.tab_filter = "";
@@ -79,6 +84,7 @@ export class SocialComponent implements OnInit {
 		this.initObjectSuscribe();
 		this.initGuideSuscribe();
 		this.initObjectCategorySuscribe();
+		this.isguide = (localStorage.getItem('guide')==='true');
 	}
 
 	initObjectSuscribe() {
@@ -150,9 +156,14 @@ export class SocialComponent implements OnInit {
 		this.object.cost = this.object.cost.replace(/\$/g, '');
 		this.object.recurrent = false;
 
-		//TODO IF ADMIN OR GUIDE
-		this.object.approved = true;
-
+		//TODO IF GUIDE
+		if(this.isguide)
+		{
+			this.object.approved = false;
+		} else {
+			this.object.approved = true;
+		}
+		
 		if (this.editing) {
 			if (this.selectedFiles) {
 				let file = this.selectedFiles.item(0)

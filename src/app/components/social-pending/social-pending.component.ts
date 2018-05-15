@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Upload } from '../../uploads/upload';
 import { PageTitleService } from '../../services/page-title.service';
 import { SocialService } from '../../services/social.service';
+import { ManageUsersService } from '../../services/manage-users.service';
 
 import { MdlDialogService } from '@angular-mdl/core';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -19,6 +20,7 @@ export class SocialPendingComponent implements OnInit {
   btnApprove = "Approve";
 	btnReject = "Reject";
 	show_form = false;
+	isguide: any;
 
 	//Component
 	object = {
@@ -42,21 +44,20 @@ export class SocialPendingComponent implements OnInit {
 		recurrent:null
 	};
 
-
-
-
 	my_list: any[];
 	plan_category_tab = [{'name':'By Date','slug':'date'},{'name':'By location','slug':'location'},{'name':'By category','slug':'category'}];
 
 	tab_filter: any;
 
-	constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService:SocialService,private dialogService: MdlDialogService) {	
+	constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService:SocialService,private dialogService: MdlDialogService, private manageUsersService: ManageUsersService) {	
 		 
 		this.afAuth.authState.subscribe((auth) => {
 			if (!auth) {
 				this.router.navigateByUrl('/login');
 			}
 		});
+		this.isguide = this.manageUsersService.isguide;
+		console.log(this.isguide)
 
 		this.tab_filter = "";
 	}
@@ -65,6 +66,7 @@ export class SocialPendingComponent implements OnInit {
 		this.pageTitleService.setTitle(this.pageTitle);
 		this.initObjectSuscribe();
 		this.initObjectCategorySuscribe();
+		this.isguide = (localStorage.getItem('guide')==='true');
 	}
 	
 	initObjectSuscribe(){

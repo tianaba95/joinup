@@ -30,6 +30,7 @@
     "@angular/router": "^4.2.4",
     "@google/maps": "^0.4.5",
     "amazing-time-picker": "^1.5.3",
+    "angular-local-storage": "^0.7.1",
     "angularfire2": "^5.0.0-rc.3",
     "core-js": "^2.4.1",
     "emailjs": "^2.0.0",

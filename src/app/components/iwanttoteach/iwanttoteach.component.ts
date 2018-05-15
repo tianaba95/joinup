@@ -35,6 +35,7 @@ export class IwanttoteachComponent implements OnInit {
 
   ngOnInit() {
     this.pageTitleService.setTitle(this.pageTitle);
+    this.isguide = (localStorage.getItem('guide')==='true');
   }
 
   initObjectSuscribe() {

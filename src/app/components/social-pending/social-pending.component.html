@@ -129,10 +129,10 @@
     </mdl-card-supporting-text>
 
     <mdl-card-actions class="text-right" mdl-card-border>
-      <button mdl-button mdl-colored mdl-ripple (click)="approveObject(item)">
+      <button mdl-button mdl-colored mdl-ripple (click)="approveObject(item)" [disabled]="isguide">
         {{btnApprove}}
       </button>
-      <button class="secondary-background secondary-background-hover" mdl-button mdl-colored mdl-ripple (click)="rejectObject(item)">
+      <button class="secondary-background secondary-background-hover" mdl-button mdl-colored mdl-ripple (click)="rejectObject(item)" [disabled]="isguide">
         {{btnReject}}
       </button>
     </mdl-card-actions >

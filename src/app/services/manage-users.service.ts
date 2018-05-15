@@ -39,7 +39,7 @@ export class ManageUsersService {
 
   getUser(id){
     return this.afDB.database.ref(`${this.modelPath}/` + id).once('value');
-   }
+  }
 
   merge(object, upload){
     if(upload){

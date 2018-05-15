@@ -71,6 +71,8 @@ export class ManageUsersComponent implements OnInit {
           if(arrayItem.email == thisTemp.name){
             if(arrayItem.rol == 'Guide'){
               thisTemp.manageUsersService.isguide = true;
+              localStorage.removeItem('guide');
+              localStorage.setItem('guide', thisTemp.manageUsersService.isguide.toString());  
               thisTemp.isguide = true;
               console.log(thisTemp.isguide)
             }
