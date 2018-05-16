@@ -35,6 +35,7 @@ export class IwanttoteachComponent implements OnInit {
 
   ngOnInit() {
     this.pageTitleService.setTitle(this.pageTitle);
+    console.log(localStorage.getItem('guide'))
     this.isguide = (localStorage.getItem('guide')==='true');
   }
 
@@ -88,7 +89,7 @@ export class IwanttoteachComponent implements OnInit {
   }
 
   sendMail(email) {
-    return this.sendmailService.sendEmail(email);
+    return this.sendmailService.sendEmail(email, "You are now a guide for JoinUp. Congratulations.");
   }
 
   changetoGuide(object){

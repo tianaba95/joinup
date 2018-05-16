@@ -3,6 +3,7 @@ import { Upload } from '../../uploads/upload';
 import { PageTitleService } from '../../services/page-title.service';
 import { SocialService } from '../../services/social.service';
 import { ManageUsersService } from '../../services/manage-users.service';
+import { SendmailService } from '../../services/sendmail.service';
 
 import { MdlDialogService } from '@angular-mdl/core';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -49,7 +50,7 @@ export class SocialPendingComponent implements OnInit {
 
 	tab_filter: any;
 
-	constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService:SocialService,private dialogService: MdlDialogService, private manageUsersService: ManageUsersService) {	
+	constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService:SocialService,private dialogService: MdlDialogService, private manageUsersService: ManageUsersService, private sendmailService: SendmailService) {	
 		 
 		this.afAuth.authState.subscribe((auth) => {
 			if (!auth) {
@@ -109,11 +110,14 @@ export class SocialPendingComponent implements OnInit {
 		let result = this.dialogService.confirm('Are you sure you want to approve ' + nameMsg + '?', 'No', 'Yes');
 		result.subscribe( () => {
       object.approved = true;
-      this.socialService.merge(object,null);
+			this.socialService.merge(object,null);
+			this.sendMail(object.guidemail);
     },(err: any) => {
       console.log('declined');
     });
-  }
+	}
+	
+
   rejectObject(object){
     var nameMsg  = object.title;
 	  
@@ -208,4 +212,8 @@ export class SocialPendingComponent implements OnInit {
 		  });
 		});
 	}
+
+	sendMail(email) {
+    return this.sendmailService.sendEmail(email, "Your plan has been approved. Thank you.");
+  }
 }

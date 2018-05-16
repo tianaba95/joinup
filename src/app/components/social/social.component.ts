@@ -44,7 +44,8 @@ export class SocialComponent implements OnInit {
 		fee: null,
 		guide: null,
 		rate: null,
-		recurrent: null
+		recurrent: null,
+		guidemail: null
 	};
 
 
@@ -73,7 +74,6 @@ export class SocialComponent implements OnInit {
 		});
 
 		this.isguide = this.manageUsersService.isguide;
-		console.log(this.isguide)
 
 		this.date = new Date();
 		this.tab_filter = "";
@@ -101,6 +101,7 @@ export class SocialComponent implements OnInit {
 			.subscribe(
 			objects => {
 				this.my_guides = objects;
+				console.log(this.my_guides)
 			}
 			);
 	}
@@ -110,7 +111,6 @@ export class SocialComponent implements OnInit {
 			.subscribe(
 			objects => {
 				this.setObject(objects);
-				console.log(objects)
 			}
 			);
 	}
@@ -155,6 +155,8 @@ export class SocialComponent implements OnInit {
 		this.object.fee = this.object.fee.replace(/\$/g, '');
 		this.object.cost = this.object.cost.replace(/\$/g, '');
 		this.object.recurrent = false;
+		
+		this.object.guidemail = this.searchEmailGuide(this.object.guide)
 
 		//TODO IF GUIDE
 		if(this.isguide)
@@ -208,7 +210,8 @@ export class SocialComponent implements OnInit {
 			fee: null,
 			guide: null,
 			rate: null,
-			recurrent: null
+			recurrent: null,
+			guidemail: null
 		};
 	}
 
@@ -217,6 +220,7 @@ export class SocialComponent implements OnInit {
 		console.log(this.selectedFiles[0].name);
 		this.fileName = this.selectedFiles[0].name;
 	}
+
 	uploadSingle() {
 		let file = this.selectedFiles.item(0)
 		this.currentUpload = new Upload(file);
@@ -280,7 +284,6 @@ export class SocialComponent implements OnInit {
 
 		let result = this.dialogService.confirm('Delete ' + deletePlan + '?', 'No', 'Yes');
 		result.subscribe(() => {
-			console.log('confirmed');
 			this.removeObject(object);
 		},
 			(err: any) => {
@@ -308,21 +311,15 @@ export class SocialComponent implements OnInit {
 	}
 
 	setTabFilter(filter) {
-		console.log(filter)
 		this.tab_filter = filter;
 		this.initObjectCategorySuscribe();
 	}
 
 	formatDate(date) {
-		console.log(date)
 		var day = date.getDate();
-		console.log("day: "+ day);
 		var monthIndex = date.getMonth() + 1;
-		console.log("month: "+ monthIndex);
 		var year = date.getFullYear();
-		console.log("year: "+ year);
 
-		console.log(monthIndex + '/' + day + '/' + year)
 		return monthIndex + '/' + day + '/' + year;
 	}
 
@@ -333,5 +330,16 @@ export class SocialComponent implements OnInit {
 				return obj[c] == criteria[c];
 			});
 		});
+	}
+
+	searchEmailGuide(guidename){
+		var guideMail = 'mail';
+		this.my_guides.forEach(function(guide){
+			var fullName = guide.name + guide.lastName;
+			if(guidename == fullName){
+				guideMail = guide.email;
+			} 
+		})
+		return guideMail;
 	}
 }

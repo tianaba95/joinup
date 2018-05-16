@@ -8,9 +8,9 @@ export class SendmailService {
 
   private modelPath:string = 'sendmail';
 
-  sendEmail(email) {
+  sendEmail(email, texto) {
     this.afDB.database.ref(`/${this.modelPath}`).push({
-      emailid: email
+      emailid: email, text: texto
     })
   }
 

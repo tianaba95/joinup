@@ -75,6 +75,9 @@ export class ManageUsersComponent implements OnInit {
               localStorage.setItem('guide', thisTemp.manageUsersService.isguide.toString());  
               thisTemp.isguide = true;
               console.log(thisTemp.isguide)
+            }else{
+              localStorage.removeItem('guide');
+              localStorage.setItem('guide', 'false');  
             }
           }
         });
