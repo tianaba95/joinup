@@ -25,7 +25,7 @@
 	  <tbody>
 	  </tbody>
 	</table>
-  </ng-template>
+</ng-template>
 
 <div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 	<div *ngFor="let item of my_list" class="mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop">
@@ -214,15 +214,25 @@
 						</mat-form-field>
 					</mat-grid-tile>
 					<mat-grid-tile>
-					<div class="formfields">
-						<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
-						<i class="material-icons">file_upload</i>
-						<input id="file_input_file" class="none" type="file" (change)="detectFiles($event)"/>
-						</label>
-						<mat-form-field class="file_input_text"> 
-						<input matInput disabled readonly placeholder="Photo" [ngModel]="fileName" name="file" type="text">
-						</mat-form-field> 
-					</div>
+						<mat-form-field class="formfields sup">
+							<input matInput type="text" [(ngModel)]="object.minassistants" placeholder="Min Assistants" name="minassistants" autofocus>
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<mat-form-field class="formfields sup">
+							<input matInput type="text" [(ngModel)]="object.maxassistants" placeholder="Max Assistants" name="maxassistants" autofocus>
+						</mat-form-field>
+					</mat-grid-tile>
+					<mat-grid-tile>
+						<div class="formfields">
+							<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+							<i class="material-icons">file_upload</i>
+							<input id="file_input_file" class="none" type="file" (change)="detectFiles($event)"/>
+							</label>
+							<mat-form-field class="file_input_text"> 
+							<input matInput disabled readonly placeholder="Photo" [ngModel]="fileName" name="file" type="text">
+							</mat-form-field> 
+						</div>
 					</mat-grid-tile>
 				</mat-grid-list>            
 			</form>  
