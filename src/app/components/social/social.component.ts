@@ -45,7 +45,9 @@ export class SocialComponent implements OnInit {
 		guide: null,
 		rate: null,
 		recurrent: null,
-		guidemail: null
+		guidemail: null,
+		likes: {likesCount: null},
+		wouldLove: null
 	};
 
 
@@ -155,7 +157,8 @@ export class SocialComponent implements OnInit {
 		this.object.fee = this.object.fee.replace(/\$/g, '');
 		this.object.cost = this.object.cost.replace(/\$/g, '');
 		this.object.recurrent = false;
-		
+		// this.object.likes.likesCount = 0;
+		// this.object.wouldLove = 0;
 		this.object.guidemail = this.searchEmailGuide(this.object.guide)
 
 		//TODO IF GUIDE
@@ -211,7 +214,9 @@ export class SocialComponent implements OnInit {
 			guide: null,
 			rate: null,
 			recurrent: null,
-			guidemail: null
+			guidemail: null,
+			likes: null,
+			wouldLove: null
 		};
 	}
 
