@@ -33,6 +33,7 @@ export class SocialComponent implements OnInit {
 		title: null,
 		location: null,
 		adress: null,
+		maxAssistants: null,
 		maxAsisstant: null,
 		date: null,
 		descriptionShort: null,
@@ -46,7 +47,9 @@ export class SocialComponent implements OnInit {
 		rate: null,
 		recurrent: null,
 		guidemail: null,
+		guidepic: null,
 		likes: {likesCount: null},
+		minassistants: null,
 		wouldLove: null
 	};
 
@@ -160,7 +163,7 @@ export class SocialComponent implements OnInit {
 		// this.object.likes.likesCount = 0;
 		// this.object.wouldLove = 0;
 		this.object.guidemail = this.searchEmailGuide(this.object.guide)
-
+		this.object.guidepic = this.searchPhotoGuide(this.object.guide);
 		//TODO IF GUIDE
 		if(this.isguide)
 		{
@@ -202,6 +205,7 @@ export class SocialComponent implements OnInit {
 			title: null,
 			location: null,
 			adress: null,
+			maxAssistants: null,
 			maxAsisstant: null,
 			date: new Date(),
 			descriptionShort: null,
@@ -215,7 +219,9 @@ export class SocialComponent implements OnInit {
 			rate: null,
 			recurrent: null,
 			guidemail: null,
+			guidepic: null,
 			likes: null,
+			minassistants: null,
 			wouldLove: null
 		};
 	}
@@ -346,5 +352,16 @@ export class SocialComponent implements OnInit {
 			} 
 		})
 		return guideMail;
+	}
+
+	searchPhotoGuide(guidename){
+		var guidePic = 'https://png.icons8.com/metro/1600/gender-neutral-user.png';
+		this.my_guides.forEach(function(guide){
+			var fullName = guide.name + guide.lastName;
+			if(guidename == fullName){
+				guidePic = guide.photo;
+			} 
+		})
+		return guidePic;
 	}
 }
