@@ -48,6 +48,7 @@ export class SocialComponent implements OnInit {
 		recurrent: null,
 		guidemail: null,
 		guidepic: null,
+		guidewhy: null,
 		likes: {likesCount: null},
 		minassistants: null,
 		wouldLove: null
@@ -164,6 +165,8 @@ export class SocialComponent implements OnInit {
 		// this.object.wouldLove = 0;
 		this.object.guidemail = this.searchEmailGuide(this.object.guide)
 		this.object.guidepic = this.searchPhotoGuide(this.object.guide);
+		this.object.guidewhy = this.searchWhyGuide(this.object.guide);
+		console.log(this.object.guide)
 		//TODO IF GUIDE
 		if(this.isguide)
 		{
@@ -220,6 +223,7 @@ export class SocialComponent implements OnInit {
 			recurrent: null,
 			guidemail: null,
 			guidepic: null,
+			guidewhy: null,
 			likes: null,
 			minassistants: null,
 			wouldLove: null
@@ -363,5 +367,17 @@ export class SocialComponent implements OnInit {
 			} 
 		})
 		return guidePic;
+	}
+
+	searchWhyGuide(guidename){
+		var guideWhy = '';
+		this.my_guides.forEach(function(guide){
+			var fullName = guide.name + guide.lastName;
+			if(guidename == fullName){
+				guideWhy = guide.whyguide;
+				console.log(guideWhy);
+			} 
+		})
+		return guideWhy;
 	}
 }
