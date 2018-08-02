@@ -30,9 +30,9 @@ export class EmailComponent implements OnInit {
   found: any;
 
   //Test
-  // redUrl = "http://localhost:8282/home";
+  redUrl = "http://localhost:8282/home";
   //Prod
-  redUrl = "http://joinup-app.firebaseapp.com/home";
+  //redUrl = "http://joinup-app.firebaseapp.com/home";
   @ViewChildren('focus_input') fi;
 
   ngAfterViewInit() {

@@ -45,7 +45,6 @@ export class ManageUsersComponent implements OnInit {
   fileName = "";
   name: any;
   isguide: any;
-  isuser:any;
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private manageUsersService: ManageUsersService, private dialogService: MdlDialogService) {
     this.isguide = false;
@@ -76,6 +75,10 @@ export class ManageUsersComponent implements OnInit {
               localStorage.setItem('guide', thisTemp.manageUsersService.isguide.toString());  
               thisTemp.isguide = true;
               console.log(thisTemp.isguide)
+            }else if(arrayItem.rol == 'User'){
+              thisTemp.isguide = true;
+              localStorage.removeItem('guide');
+              localStorage.setItem('guide', thisTemp.manageUsersService.isguide.toString());  
             }else{
               localStorage.removeItem('guide');
               localStorage.setItem('guide', 'false');  
