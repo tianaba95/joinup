@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MdlLayoutComponent } from '@angular-mdl/core';
 import {AngularFireAuth  } from 'angularfire2/auth';
+
 import * as firebase from 'firebase/app';
+import { PageTitleService } from '../../../services/page-title.service';
 
 declare var $:any;
 
@@ -14,6 +16,7 @@ export class AsideMenuComponent implements OnInit {
 
   username = "";
   username_img = "";
+  is404:any;
 
   displaySubmenu = null;
 
@@ -37,8 +40,9 @@ export class AsideMenuComponent implements OnInit {
     {id:5,text:'Demo',icon:'report', link: 'demo'}
   ];
 
-  constructor(private mdlLayoutComponent:MdlLayoutComponent, public afAuth: AngularFireAuth) {
-   
+  constructor(private mdlLayoutComponent:MdlLayoutComponent, public afAuth: AngularFireAuth, public pagetitleService: PageTitleService) {
+    this.is404 = this.pagetitleService.is404;
+    console.log(this.pagetitleService.isPage404());
     var user = this.afAuth.auth.currentUser;
       if (user){
         this.username = user.displayName;

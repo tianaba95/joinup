@@ -27,7 +27,9 @@ export class IwanttoteachComponent implements OnInit {
     this.afAuth.authState.subscribe((auth) => {
       if (!auth) {
         this.router.navigateByUrl('/login');
-      } 
+      } else {
+        console.log(auth)
+      }
     });
 
     this.initObjectSuscribe();

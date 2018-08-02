@@ -21,6 +21,7 @@ import { MembersComponent } from './components/authentication/members/members.co
 import { ObjectivesComponent } from './components/objectives/objectives.component';
 
 import { AuthGuard } from './services/auth.service';
+import { NotAutorizedComponent } from './components/not-autorized/not-autorized.component';
 
 const app_routes: Routes = [
     { path: 'demo', component: DemoComponent, canActivate: [AuthGuard] },
@@ -42,6 +43,7 @@ const app_routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'login-email', component: EmailComponent },
     { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
+    { path: '404', component: NotAutorizedComponent },
 
     { path: '**', pathMatch: 'full', redirectTo: 'demo' },
 ];

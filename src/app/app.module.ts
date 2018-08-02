@@ -65,6 +65,7 @@ import { MembersComponent } from './components/authentication/members/members.co
 
 import { AuthGuard } from './services/auth.service';
 import { ObjectivesComponent } from './components/objectives/objectives.component';
+import { NotAutorizedComponent } from './components/not-autorized/not-autorized.component';
 
 //Test
 export const firebaseConfig = {
@@ -111,7 +112,8 @@ export const firebaseConfig = {
     EmailComponent,
     SignupComponent,
     MembersComponent,
-    ObjectivesComponent
+    ObjectivesComponent,
+    NotAutorizedComponent
   ],
   imports: [
     BrowserModule,
