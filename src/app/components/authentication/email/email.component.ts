@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { moveIn, fallIn } from '../../../router.animations';
 import { Observable } from 'rxjs/Observable';
+import { ManageUsersService } from '../../../services/manage-users.service';
 
 import {
   Input, Output, AfterContentInit, ContentChild,
@@ -23,21 +24,44 @@ export class EmailComponent implements OnInit {
   state: string = '';
   error: any;
 
-  email: any;
+  email: String;
   password: any;
+  my_list: any[];
+  found: any;
+
+  //Test
+  // redUrl = "http://localhost:8282/home";
+  //Prod
+  redUrl = "http://joinup-app.firebaseapp.com/home";
   @ViewChildren('focus_input') fi;
 
   ngAfterViewInit() {
     this.fi.first.nativeElement.focus();
   }
 
-  constructor(public afAuth: AngularFireAuth, private router: Router) {
-
+  constructor(public afAuth: AngularFireAuth, private router: Router, private manageUsersService: ManageUsersService) {
     this.afAuth.authState.subscribe((auth) => {
-      if (auth) {
-        this.router.navigateByUrl('/users');
+      if(auth) {
+        this.email = auth.email;
+        if(this.my_list){
+          for (var i=0; i < this.my_list.length; i++) {
+            if(this.my_list[i].email == this.email){
+              this.found = this.my_list[i];
+            }
+          }
+          if(this.found){
+            console.log("found")
+            if(this.found.rol == "User"){
+              console.log(this.found.rol);
+              this.linkToUrlFunction(this.redUrl, this.found.id);
+            } else {     
+              this.router.navigateByUrl('/users');
+            }
+          }
+        }
       }
     });
+    this.initObjectSuscribe(); 
 
   }
 
@@ -60,6 +84,24 @@ export class EmailComponent implements OnInit {
           this.error = err;
         });
     }
+  }
+
+  initObjectSuscribe() {
+    this.getObjectList()
+      .subscribe(
+      objects => {
+        this.my_list = objects;
+      }
+      );
+  }
+
+  getObjectList() {
+    return this.manageUsersService.getAll();
+  }
+
+  linkToUrlFunction(url, id){
+    var openingUrl = url + '/' + id;
+    window.open(openingUrl,"_self");
   }
 
 }

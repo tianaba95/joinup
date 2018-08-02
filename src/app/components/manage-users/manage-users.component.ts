@@ -45,6 +45,7 @@ export class ManageUsersComponent implements OnInit {
   fileName = "";
   name: any;
   isguide: any;
+  isuser:any;
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private manageUsersService: ManageUsersService, private dialogService: MdlDialogService) {
     this.isguide = false;

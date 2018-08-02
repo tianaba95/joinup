@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit {
   my_list: any[];
   email: String;
   found: any;
+  //Test
   redUrl = "http://localhost:8282/home";
+  //Prod
+  //redUrl = "http://joinup-app.firebaseapp.com/home";
 
   constructor(public afAuth: AngularFireAuth,private router: Router, private manageUsersService: ManageUsersService) {
     this.afAuth.authState.subscribe((auth) => {
@@ -34,7 +37,9 @@ export class LoginComponent implements OnInit {
             }
           }
           if(this.found){
+            console.log("found")
             if(this.found.rol == "User"){
+              console.log(this.found.rol);
               this.linkToUrlFunction(this.redUrl, this.found.id);
             } else {     
               this.router.navigateByUrl('/users');

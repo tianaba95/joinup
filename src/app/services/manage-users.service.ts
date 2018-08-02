@@ -15,6 +15,8 @@ export class ManageUsersService {
   
   public isguide:boolean = false;
 
+  public isuser:boolean=false;
+
   private modelPath:string = 'users';
   private rolPath:string = 'rol';
   private basePath:string = '/uploads';

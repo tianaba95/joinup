@@ -1,3 +1,49 @@
-<p>
-  plan-asistentes works!
-</p>
+<p>Esto funciona (?)</p>
+<!-- <div [hidden]="show_form" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+    <mat-select placeholder="Gender" name="gender" [(ngModel)]="my_list.name">
+      <mat-option value="" disabled>Select gender</mat-option>
+      <mat-option *ngFor="let r of my_list" [value]="r">{{ r }}</mat-option>
+    </mat-select>
+  </div>
+</div>
+
+
+
+<!--TABLE. SHOULD MAKE A COMPONENT -->
+<!-- <ng-template #table>
+  <table>
+      <thead>
+        <tr>
+          <th scope="col">Photo</th>
+          <th scope="col">Name</th>
+          <th scope="col">Username</th>
+          <th scope="col" class="hide-sm-2">Email</th>
+          <th scope="col" class="hide-sm-1">City</th>
+          <th scope="col">Rol</th>
+          <th scope="col" style="width:150px;" [hidden]="isguide">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of my_list"  [ngClass]="{'table-row-active': rowElementActive === o.id }">
+
+          <td scope="row" [ngClass]="{'table-display-none' : !o.photo}">
+            <div class="table-avatar">
+              <img src="{{o.photo}}" alt="" />
+            </div>
+          </td>
+          
+          <td data-label="Name" [ngClass]="{'table-display-none' : !o.lastName  && !o.name}">{{o.name}} {{o.lastName}}</td>
+          <td data-label="Username" [ngClass]="{'table-display-none' : !o.username}">{{o.username}}</td>
+          <td data-label="Email" class="hide-sm-2" [ngClass]="{'table-display-none' : !o.email}">{{o.email}}</td>
+          <td data-label="City" class="hide-sm-1" [ngClass]="{'table-display-none' : !o.city}">{{o.city}}</td>
+          <td data-label="Rol" [ngClass]="{'table-display-none' : !o.rol}">{{o.rol}}</td>
+          <td [hidden]="isguide">
+            <a (click)="viewObject(o)" class="button" ><i class="material-icons">mode_edit</i></a>
+            <a (click)="deleteConfirmation(o)" class="button"><i class="material-icons">delete</i></a>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+</ng-template> --> -->

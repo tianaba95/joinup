@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./plan-asistentes.component.css']
 })
 export class PlanAsistentesComponent implements OnInit {
-
+  
+  my_list: any[];
+  name: any[];
+  show_form: any;
   constructor(private afAuth: AngularFireAuth, private router: Router) {
 
     this.afAuth.authState.subscribe((auth) => {
