@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MdlLayoutComponent } from '@angular-mdl/core';
 import {AngularFireAuth  } from 'angularfire2/auth';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
+import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import { PageTitleService } from '../../../services/page-title.service';
 
@@ -16,7 +19,7 @@ export class AsideMenuComponent implements OnInit {
 
   username = "";
   username_img = "";
-  is404:any;
+  is403:any;
 
   displaySubmenu = null;
 
@@ -40,9 +43,17 @@ export class AsideMenuComponent implements OnInit {
     {id:5,text:'Demo',icon:'report', link: 'demo'}
   ];
 
-  constructor(private mdlLayoutComponent:MdlLayoutComponent, public afAuth: AngularFireAuth, public pagetitleService: PageTitleService) {
-    this.is404 = this.pagetitleService.is404;
-    console.log(this.pagetitleService.isPage404());
+  private rout:any;
+  constructor(private mdlLayoutComponent:MdlLayoutComponent, private route: ActivatedRoute, public afAuth: AngularFireAuth, public pagetitleService: PageTitleService, private router: Router, public location: Location) {
+    this.is403 = this.pagetitleService.isPage403();
+    var thisNew = this;
+    router.events.subscribe((val) => {
+      console.log(val)
+      if (thisNew.location.path() == '/403'){
+        console.log("lol");
+        thisNew.is403 = true;
+      }
+    });
     var user = this.afAuth.auth.currentUser;
       if (user){
         this.username = user.displayName;

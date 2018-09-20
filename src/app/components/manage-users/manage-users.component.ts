@@ -76,16 +76,15 @@ export class ManageUsersComponent implements OnInit {
               localStorage.removeItem('guide');
               localStorage.setItem('guide', thisTemp.manageUsersService.isguide.toString());  
               thisTemp.isguide = true;
-              console.log(thisTemp.isguide) 
             }else if(arrayItem.rol == 'User'){
-              
+              console.log("JUST AN USER")
+              thisTemp.router.navigateByUrl('/403');
             }else{
               localStorage.removeItem('guide');
               localStorage.setItem('guide', 'false');  
             }
           }
         });
-        console.log(this.name);
       }
       );
   }

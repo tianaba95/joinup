@@ -1,9 +1,9 @@
-<header class="app-drawer-header primary-background" hidden="is404">
+<header class="app-drawer-header primary-background" [hidden]="is403">
   <img src="{{username_img}}" class="app-avatar">
   <span class="color-white">{{username}}</span>
 </header>
   
-<nav class="app-navigation mdl-navigation" hidden="is404">
+<nav class="app-navigation mdl-navigation" [hidden]="is403">
   <a *ngFor="let item of menu_list"  id="dropdown-{{item.id}}" class="mdl-navigation__link dropdown" (click)=dropdownMenu(item.id) routerLinkActive="active">
     
     <span *ngIf="!item.link"><i class="material-icons" role="presentation">{{item.icon}}</i>{{item.text}}</span>

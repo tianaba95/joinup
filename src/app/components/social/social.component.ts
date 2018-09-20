@@ -70,9 +70,17 @@ export class SocialComponent implements OnInit {
 	fileName = "";
 
 	date: Date;
+	name: any;
+	is_a_guide: any;
+	isuser:any;
 
 	constructor(private dateAdapter: DateAdapter<Date>, private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private socialService: SocialService, private dialogService: MdlDialogService, private manageUsersService: ManageUsersService) {
 
+		var user = this.afAuth.auth.currentUser;
+		if (user){
+			this.name = user.email;
+			console.log(user);
+		}
 		this.afAuth.authState.subscribe((auth) => {
 			if (!auth) {
 				this.router.navigateByUrl('/login');
@@ -83,6 +91,9 @@ export class SocialComponent implements OnInit {
 
 		this.date = new Date();
 		this.tab_filter = "";
+
+		this.initPeopleObjectSuscribe();
+	
 	}
 
 	ngOnInit() {
@@ -127,6 +138,37 @@ export class SocialComponent implements OnInit {
 
 	getGuidetList() {
 		return this.socialService.getGuideList();
+	}
+
+	initPeopleObjectSuscribe() {
+		this.getPeopleList()
+			.subscribe(
+				objects => {
+					this.my_list = objects;
+					let thisTemp = this;
+					this.my_list.forEach( function (arrayItem)
+					{
+					  if(arrayItem.email == thisTemp.name){
+						if(arrayItem.rol == 'Guide'){
+						  thisTemp.manageUsersService.isguide = true;
+						  localStorage.removeItem('guide');
+						  localStorage.setItem('guide', thisTemp.manageUsersService.isguide.toString());  
+						  thisTemp.is_a_guide = true;
+						}else if(arrayItem.rol == 'User'){
+						  console.log("JUST AN USER")
+						  thisTemp.router.navigateByUrl('/403');
+						}else{
+						  localStorage.removeItem('guide');
+						  localStorage.setItem('guide', 'false');  
+						}
+					  }
+					});
+				  }
+			);
+	}
+
+	getPeopleList() {
+		return this.manageUsersService.getAll();
 	}
 
 	getTabList() {

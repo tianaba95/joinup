@@ -22,7 +22,18 @@ export class IwanttoteachComponent implements OnInit {
   object = { id: null, name: null, whyguide: null, phone: null, resume: null, photo: null, userId: null };
   my_list: any[];
   isguide:any;
+
+  name: any;
+	is_a_guide: any;
+  isuser:any;
+  
   constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private dialogService: MdlDialogService, private wantoteachService: WantoteachService, private manageuserService: ManageUsersService, private sendmailService: SendmailService) {
+    var user = this.afAuth.auth.currentUser;
+		if (user){
+			this.name = user.email;
+			console.log(user);
+    }
+    
     this.isguide = this.manageuserService.isguide;
     this.afAuth.authState.subscribe((auth) => {
       if (!auth) {
@@ -33,6 +44,7 @@ export class IwanttoteachComponent implements OnInit {
     });
 
     this.initObjectSuscribe();
+    this.initPeopleObjectSuscribe();
   }
 
   ngOnInit() {
@@ -57,6 +69,37 @@ export class IwanttoteachComponent implements OnInit {
   setObject(objects) {
     this.my_list = objects;
   }
+
+  initPeopleObjectSuscribe() {
+		this.getPeopleList()
+			.subscribe(
+				objects => {
+					this.my_list = objects;
+					let thisTemp = this;
+					this.my_list.forEach( function (arrayItem)
+					{
+					  if(arrayItem.email == thisTemp.name){
+						if(arrayItem.rol == 'Guide'){
+						  thisTemp.manageuserService.isguide = true;
+						  localStorage.removeItem('guide');
+						  localStorage.setItem('guide', thisTemp.manageuserService.isguide.toString());  
+						  thisTemp.is_a_guide = true;
+						}else if(arrayItem.rol == 'User'){
+						  console.log("JUST AN USER")
+						  thisTemp.router.navigateByUrl('/403');
+						}else{
+						  localStorage.removeItem('guide');
+						  localStorage.setItem('guide', 'false');  
+						}
+					  }
+					});
+				  }
+			);
+	}
+
+	getPeopleList() {
+    return this.manageuserService.getAll();
+	}
 
   removeObject(id) {
     this.wantoteachService.remove(id);

@@ -43,7 +43,7 @@ const app_routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'login-email', component: EmailComponent },
     { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
-    { path: '404', component: NotAutorizedComponent },
+    { path: '403', component: NotAutorizedComponent },
 
     { path: '**', pathMatch: 'full', redirectTo: 'demo' },
 ];

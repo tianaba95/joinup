@@ -12,14 +12,16 @@ export class PageTitleService {
   
   public title: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-  is404:any;
-
   setTitle(value: string) {
     this.title.next(value);
   }
 
-  isPage404() {
-    return this.location.path();
+  isPage403() {
+    if (this.location.path() == '/403'){
+      return true;
+    }else {
+      return false;
+    };
   }
 
   getLocation(term: string):Promise<any> {

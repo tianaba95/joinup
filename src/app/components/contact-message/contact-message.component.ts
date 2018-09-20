@@ -25,7 +25,17 @@ export class ContactMessageComponent implements OnInit {
   my_list: any[];
   isguide: any;
 
+  name: any;
+	is_a_guide: any;
+	isuser:any;
+
   constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private contactMessageService: ContactMessageService, private dialogService: MdlDialogService, private manageUsersService: ManageUsersService) {
+   
+    var user = this.afAuth.auth.currentUser;
+		if (user){
+			this.name = user.email;
+			console.log(user);
+		}
     this.isguide = this.manageUsersService.isguide;
     console.log(this.isguide)
     this.afAuth.authState.subscribe((auth) => {
@@ -35,6 +45,7 @@ export class ContactMessageComponent implements OnInit {
     });
 
     this.initObjectSuscribe();
+    this.initPeopleObjectSuscribe();
   }
 
   ngOnInit() {
@@ -60,6 +71,37 @@ export class ContactMessageComponent implements OnInit {
   getObjectList() {
     return this.contactMessageService.getAll();
   }
+
+  initPeopleObjectSuscribe() {
+		this.getPeopleList()
+			.subscribe(
+				objects => {
+					this.my_list = objects;
+					let thisTemp = this;
+					this.my_list.forEach( function (arrayItem)
+					{
+					  if(arrayItem.email == thisTemp.name){
+						if(arrayItem.rol == 'Guide'){
+						  thisTemp.manageUsersService.isguide = true;
+						  localStorage.removeItem('guide');
+						  localStorage.setItem('guide', thisTemp.manageUsersService.isguide.toString());  
+						  thisTemp.is_a_guide = true;
+						}else if(arrayItem.rol == 'User'){
+						  console.log("JUST AN USER")
+						  thisTemp.router.navigateByUrl('/403');
+						}else{
+						  localStorage.removeItem('guide');
+						  localStorage.setItem('guide', 'false');  
+						}
+					  }
+					});
+				  }
+			);
+	}
+
+	getPeopleList() {
+		return this.manageUsersService.getAll();
+	}
 
   setObject(objects) {
     this.my_list = objects;

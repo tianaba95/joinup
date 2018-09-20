@@ -4,6 +4,7 @@ import { RolService } from '../../services/rol.service';
 import { MdlDialogService } from '@angular-mdl/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { ManageUsersService } from '../../services/manage-users.service';
 
 @Component({
 	selector: 'app-rol',
@@ -27,9 +28,16 @@ export class RolComponent implements OnInit {
 	show_form = false;
 	editing = false;
 	my_list: any[];
+	name: any;
+	isguide: any;
+	isuser:any;
 
-	constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private rolService: RolService, private dialogService: MdlDialogService) {
-
+	constructor(private afAuth: AngularFireAuth, private router: Router, private pageTitleService: PageTitleService, private rolService: RolService, private dialogService: MdlDialogService, private manageUsersService: ManageUsersService) {
+		var user = this.afAuth.auth.currentUser;
+		if (user){
+			this.name = user.email;
+			console.log(user);
+		}
 		this.afAuth.authState.subscribe((auth) => {
 			if (!auth) {
 				this.router.navigateByUrl('/login');
@@ -37,6 +45,7 @@ export class RolComponent implements OnInit {
 		});
 
 		this.initObjectSuscribe();
+		this.initPeopleObjectSuscribe();
 	}
 
 	ngOnInit() {
@@ -52,6 +61,38 @@ export class RolComponent implements OnInit {
 			);
 	}
 
+	initPeopleObjectSuscribe() {
+		this.getPeopleList()
+			.subscribe(
+				objects => {
+					this.my_list = objects;
+					let thisTemp = this;
+					this.my_list.forEach( function (arrayItem)
+					{
+					  if(arrayItem.email == thisTemp.name){
+						if(arrayItem.rol == 'Guide'){
+						  thisTemp.manageUsersService.isguide = true;
+						  localStorage.removeItem('guide');
+						  localStorage.setItem('guide', thisTemp.manageUsersService.isguide.toString());  
+						  thisTemp.isguide = true;
+						}else if(arrayItem.rol == 'User'){
+						  console.log("JUST AN USER")
+						  thisTemp.router.navigateByUrl('/403');
+						}else{
+						  localStorage.removeItem('guide');
+						  localStorage.setItem('guide', 'false');  
+						}
+					  }
+					});
+				  }
+			);
+	}
+
+	getPeopleList() {
+		return this.manageUsersService.getAll();
+	}
+
+	
 	getObjectList() {
 		return this.rolService.getAll();
 	}
